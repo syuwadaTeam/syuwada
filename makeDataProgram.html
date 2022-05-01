@@ -81,7 +81,7 @@
     const gain = 0.1;
     let charNum = 0;  //"あ"
     let lastCharNum = [];
-    const allMoji = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをん";
+    const allMoji = "あいうえおかきくけこさしすせそたちつてとなにぬねはひふへほまみむめもやゆよらるれろわ"; //静的指文字のみ
     let syuwaImg;
     let listBox;
 
@@ -239,7 +239,7 @@
 
             //次の文字にする。
             lastCharNum.push(charNum);
-            charNum++;
+            charNum = Math.floor( Math.random() * allMoji.length )  //文字はランダム
             syuwaImg.src = "https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/指文字イラスト/" + allMoji[charNum] + ".png";
           }
         }
