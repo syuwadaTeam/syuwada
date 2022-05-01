@@ -23,10 +23,40 @@
       overflow: auto;
       white-space:nowrap;
       position: absolute;
-      top: 40%;
+      top: 45%;
       right: 1.5%;
       border-radius: 5px;
       line-height: 3px;
+    }
+
+    #syuwaImg{
+
+      width: 20%;
+      position: absolute;
+      top: 3%;
+      right: 1.5%;
+
+    }
+
+
+    #download{
+
+      width: 5%;
+      height: 3%;
+      position: absolute;
+      top: 77%;
+      right: 3%;
+
+    }
+
+    #undo{
+
+      width: 5%;
+      height: 3%;
+      position: absolute;
+      top: 77%;
+      right: 15%;
+
     }
 
   </style>
@@ -50,13 +80,21 @@
     let landmarksList = [];
     const gain = 0.1;
     let charNum = 0;  //"あ"
+    let lastCharNum = [];
     const allMoji = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをん";
+    let syuwaImg;
+    let listBox;
 
 
     //初期化
     window.onload = function() {
-      //画像の読み込み
-      beam = document.getElementById("beam");           
+
+      //リストボックス要素を取得
+      listBox = document.getElementById('listBox');
+      //img要素の取得
+      syuwaImg = document.getElementById("syuwaImg");
+      //githubからイラストを取得""
+      syuwaImg.src = "https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/指文字イラスト/" + allMoji[charNum] + ".png";
       //ビデオ要素の取得
       let videoElement = document.getElementById('input_video');
       //表示用のCanvasを取得
@@ -88,7 +126,79 @@
       });
       //カメラの動作開始
       camera.start();
+
     };
+
+
+    //スペースキーが押されたとき
+    document.addEventListener('keypress', (event) => {
+      if (event.code === "Space" && isPressSpace == false){
+        isPressSpace = true;
+      }
+    });
+
+    //downloadボタンが押されたとき
+    function downloadCSV() {
+      
+      //#listBox要素を全消し
+      const clone = listBox.cloneNode( false );
+      listBox.parentNode.replaceChild( clone , listBox );
+      listBox = clone;
+
+      //lastCharNumを全部削除
+      lastCharNum.length = 0;
+
+
+      //以下、.CSVをダウンロードするプログラム
+
+      const blob = new Blob([landmarksList.join('\n')], { type: "text/csv" });
+
+      //BlobからオブジェクトURLを作成する
+      const url = (window.URL || window.webkitURL).createObjectURL(blob);
+      //ダウンロード用にリンクを作成する
+      const download = document.createElement("a");
+      //リンク先に上記で生成したURLを指定する
+      download.href = url;
+      //download属性にファイル名を指定する
+      download.download = "pointData.csv";
+      //作成したリンクをクリックしてダウンロードを実行する
+      download.click();
+      //createObjectURLで作成したオブジェクトURLを開放する
+      (window.URL || window.webkitURL).revokeObjectURL(url);
+
+
+      //landmarksListを全部削除
+      landmarksList.length = 0;
+
+      pushToLog(".csvファイルをダウンロードしました...");
+
+    }
+
+    //undoボタンが押されたとき
+    function undo() {
+      
+      if(lastCharNum.length == 0)  return;
+
+      //charNumを前のcharNumにする。(pop()関数 )
+      charNum = lastCharNum.pop();
+      syuwaImg.src = "https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/指文字イラスト/" + allMoji[charNum] + ".png";
+
+      //landmarksListの最後番目を削除
+      landmarksList.pop();
+
+      //<p>要素の最後番目を取得
+      const lastP = listBox.lastElementChild;
+      //最後の<p>要素を削除
+      lastP.remove();
+
+
+    }
+
+    //ログに書き込む
+    function pushToLog(logStr){
+      listBox.insertAdjacentHTML('beforeend', "<p>" + logStr + "</p>");
+      listBox.scrollTo(0, listBox.scrollHeight);
+    }
 
 
     //手の検出結果を利用する
@@ -120,16 +230,17 @@
 
           //スペースキーが押されたら...
           if(isPressSpace == true){
+
             const normalizedPoint = saveResults(landmarks, gain, results.image, canvasElement);
             landmarksList.push(charNum + ',' + normalizedPoint);
 
-            //以下で関節データをリストに追加
+            //関節データをリストに追加
+            pushToLog( allMoji[charNum] + ' = ' + normalizedPoint );  //EX : あ = ..., ..., ..., .....
 
-            const listBox = document.getElementById('listBox');
-            //リストアイテムを挿入
-            listBox.insertAdjacentHTML('beforeend', '<p>' + allMoji[charNum] + ' = ' + normalizedPoint + '</p>');
-            //スクロールバーの位置をリストの最下部に設定
-            listBox.scrollTo(0, listBox.scrollHeight);
+            //次の文字にする。
+            lastCharNum.push(charNum);
+            charNum++;
+            syuwaImg.src = "https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/指文字イラスト/" + allMoji[charNum] + ".png";
           }
         }
       }
@@ -205,46 +316,24 @@
 
       return normalizedPoint;   //csv用のデータを返す。
 
-
-      //以下、.CSVをダウンロードするプログラム
-
-      const blob = new Blob(normalizedPoint, { type: "text/csv" });
-
-      //BlobからオブジェクトURLを作成する
-      const url = (window.URL || window.webkitURL).createObjectURL(blob);
-      //ダウンロード用にリンクを作成する
-      const download = document.createElement("a");
-      //リンク先に上記で生成したURLを指定する
-      download.href = url;
-      //download属性にファイル名を指定する
-      download.download = "pointData.csv";
-      //作成したリンクをクリックしてダウンロードを実行する
-      download.click();
-      //createObjectURLで作成したオブジェクトURLを開放する
-      (window.URL || window.webkitURL).revokeObjectURL(url);
-
     }
 
-    //スペースキーが押されたときに反応する
-    document.addEventListener('keypress', (event) => {
-      if (event.code === "Space" && isPressSpace == false){
-        isPressSpace = true;
-      }
-    });
 
   </script>
 </head>
 
 <body>
     <video id="input_video" style="position:absolute; display:none;"></video>
-    <img id="beam" src="https://cdn.glitch.me/ad9fef5c-efc6-4637-81e8-6db3270ffc22%2Fbeam.png?v=1635160767213" style="position:absolute; display:none;">
     <canvas id="output_canvas" style="position:absolute;"></canvas>
 
-
+    <img id="syuwaImg">
     <div id="listBox">
       <p>ここに関節データが表示されます...</p>
       <p>手を映してからスペースキーを押して撮影...</p>
     </div>
+
+    <button id = "download" type="button" onclick= "downloadCSV();">downloadCSV</button>
+    <button id = "undo" type="button" onclick= "undo();">undo</button>
 </body>
 </html>
 
