@@ -6,7 +6,9 @@
   → glitchにてwebサイトとして公開 https://resilient-fluoridated-iodine.glitch.me/
   - CSV形式で出力。
   - その時の画像も出力
-  
+
+
+
 ### 2.機械学習をさせる
   - TensorFlow(python)で学習させ、TesorFlow.jsで予測。
   
