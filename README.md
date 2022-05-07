@@ -3,6 +3,7 @@
 
 1.機械学習用のデータを作る
   ・効率よくデータ収集するためのプログラムを作成。
+  → glitchにてwebサイトとして公開 https://resilient-fluoridated-iodine.glitch.me/
   ・CSV形式で出力。
   ・その時の画像も出力
   
