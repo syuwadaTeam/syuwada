@@ -8,6 +8,6 @@
   - その時の画像も出力
   
 2.機械学習をさせる
-  ・TensorFlow(python)で学習させ、TesorFlow.jsで予測。
+  - TensorFlow(python)で学習させ、TesorFlow.jsで予測。
   
 3.手話打をwebアプリケーションとして開発
