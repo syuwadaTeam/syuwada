@@ -67,6 +67,16 @@
 
     }
 
+    #take{
+
+      width: 15%;
+      height: 6%;
+      position: absolute;
+      top: 85%;
+      left: 3.6%;
+
+    }
+
   </style>
 
   <meta charset="utf-8">
@@ -318,7 +328,7 @@
       //canvasをJPEG変換し、そのBase64文字列をhrefへセット
       a.href = trimImg.toDataURL('image/jpeg', 0.85);
       //ダウンロード時のファイル名を指定
-      a.download = 'pointData_trimImg -.jpg';
+      a.download =  allMoji[charNum] + ' - .jpg';
       //クリックイベントを発生させる
       a.click();
 
@@ -337,11 +347,12 @@
     <img id="syuwaImg">
     <div id="listBox">
       <p>ここに関節データが表示されます...</p>
-      <p>手を映してからスペースキーを押して撮影...</p>
+      <p>手を映してからスペースキー、または撮るボタンを押して撮影...</p>
     </div>
 
     <button id = "download" type="button" onclick= "downloadCSV();">downloadCSV</button>
     <button id = "undo" type="button" onclick= "undo();">undo</button>
+    <button id = "take" type="button" onclick= "if(isPressSpace == false)  isPressSpace = true;">撮る</button>
 </body>
 </html>
 
