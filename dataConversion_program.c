@@ -56,6 +56,7 @@ int main(void){
             puts("error!! : cant open file");
             return 1;
         }
+        printf("current file = %s\n", readFileName[fileNum]);
 
 
         //ファイルの最後まで一行ずつ読み込む
