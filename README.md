@@ -14,3 +14,6 @@
   - 指文字予測プログラム試作をglitchで公開。→ https://smoggy-shared-mile.glitch.me/
   
 ### 3.手話打をwebアプリケーションとして開発
+  - UIなどの案、作成
+  - pc対応
+  - できればスマホ対応
