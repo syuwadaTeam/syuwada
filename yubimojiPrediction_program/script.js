@@ -136,7 +136,7 @@ function return_normalized_landmarks(landmarks, resultImg, gain){
 //正規化データを与えると、指文字を予測して表示する
 async function predict_yubimoji(normalized_landmarks){
 
-    const model = await tf.loadLayersModel('https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/tensorFlow/modelData/model.json');
+    const model = await tf.loadLayersModel('https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/yubimojiPrediction_program/Assets/model_json.json');
 
     const y_pred = await model.predict( tf.tensor2d(normalized_landmarks, [1, 63]) );
 
