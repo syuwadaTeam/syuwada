@@ -1,0 +1,72 @@
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666666;
+  border-radius: 3px;
+}
+
+#output_canvas{
+  border-radius: 5px;
+  position: absolute;
+  top: 1.5%;
+  left: 23%;
+
+}
+
+#listBox {
+  width: 20%;
+  height: 30%;
+  background-color: #ffffff;
+  border: 1px #c0c0c0 solid;
+  color: #000000;
+  overflow: auto;
+  white-space:nowrap;
+  position: absolute;
+  top: 45%;
+  left: 1.5%;
+  border-radius: 5px;
+  line-height: 3px;
+}
+
+#syuwaImg{
+
+  width: 20%;
+  position: absolute;
+  top: 3%;
+  left: 1.5%;
+
+}
+
+
+#download{
+
+  width: 5%;
+  height: 3%;
+  position: absolute;
+  top: 77%;
+  left: 3%;
+
+}
+
+#undo{
+
+  width: 5%;
+  height: 3%;
+  position: absolute;
+  top: 77%;
+  left: 15%;
+
+}
+
+#take{
+
+      width: 15%;
+      height: 6%;
+      position: absolute;
+      top: 85%;
+      left: 3.6%;
+
+    }
