@@ -13,8 +13,8 @@ def open_csv_numpy_loadtxt_skiprow(filename):
     data = np.loadtxt(filename, delimiter=',', skiprows=1)
     return data
 
-x = open_csv_numpy_loadtxt_skiprow("./converted_pointData_datax.csv") # https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/converted_pointData_datax.csv
-y = open_csv_numpy_loadtxt_skiprow("./converted_pointData_datay.csv") # https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/converted_pointData_datay.csv
+x = open_csv_numpy_loadtxt_skiprow("./converted_pointData_datax.csv") # https://github.com/syuwadaTeam/syuwada/blob/main/createLerningModel_program/Assets/converted_pointData_datax.csv?raw=true
+y = open_csv_numpy_loadtxt_skiprow("./converted_pointData_datay.csv") # https://github.com/syuwadaTeam/syuwada/blob/main/createLerningModel_program/Assets/converted_pointData_datay.csv?raw=true
 
 print(x, y)
 
