@@ -31,7 +31,7 @@ window.onload = function() {
   //img要素の取得
   syuwaImg = document.getElementById("syuwaImg");
   //githubからイラストを取得""
-  syuwaImg.src = "https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/指文字イラスト/" + allMoji[charNum] + ".png";
+  syuwaImg.src = "https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/createCSVdata_program/Assets/" + allMoji[charNum] + ".png";
   //ビデオ要素の取得
   let videoElement = document.getElementById('input_video');
   //表示用のCanvasを取得
@@ -177,7 +177,7 @@ function recvResults(results) {
         //次の文字にする。
         lastCharNum.push(charNum);
         charNum = Math.floor( Math.random() * allMoji.length )  //文字はランダム
-        syuwaImg.src = "https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/指文字イラスト/" + allMoji[charNum] + ".png";
+        syuwaImg.src = "https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/createCSVdata_program/Assets/" + allMoji[charNum] + ".png";
       }
     }
   }
