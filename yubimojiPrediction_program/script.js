@@ -77,11 +77,30 @@ function recvResults(results) {
       //関節を描画
       drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 1,radius:2});
 
-      let normalized_landmarks = return_normalized_landmarks(landmarks, results.image, gain);
-      predict_yubimoji(normalized_landmarks);
+      const normalized_landmarks = return_normalized_landmarks(landmarks, results.image, gain);
+      const corner = normalized_landmarks.corner;
+      const sizeRateX = canvasElement.width / results.image.width;
+      const sizeRateY = canvasElement.height / results.image.height;
+      canvasCtx.strokeStyle = '#00f';
+      canvasCtx.lineWidth = 3;
+      canvasCtx.strokeRect(corner.x * sizeRateX,
+                           corner.y * sizeRateY,
+                           normalized_landmarks.width * sizeRateX,
+                           normalized_landmarks.width * sizeRateY
+                          );
+
+      predict_yubimoji(normalized_landmarks.landmarks.flat())
+      .then(ret => {
+
+        showResult(ret);
+
+
+      });
+
+
 
     }
-  }else{
+  }else{  //手が無かったら...
 
     const predictCharElement = document.getElementById("predictChar");
     predictCharElement.innerHTML = "？";
@@ -130,7 +149,12 @@ function return_normalized_landmarks(landmarks, resultImg, gain){
     //console.table(normalizedPoint.flat());
 
     //flatで1次元配列へ変換
-    return normalizedPoint.flat();
+    return  {
+              landmarks : normalizedPoint,
+              corner : offset,
+              width : len_whithMargin
+            };
+
 }
 
 //正規化データを与えると、指文字を予測して表示する
@@ -143,22 +167,28 @@ async function predict_yubimoji(normalized_landmarks){
     //Arrayに変換用
     const values = await y_pred.data();
     // console.log(values);
-    const arr = await Array.from(values);
+    const arr =  Array.from(values);
     // console.table(arr);
 
     const charProbability = Math.max(...arr);
     const predict_num = arr.indexOf(charProbability);
     const predict_char = allMoji[predict_num];
 
-    const predictCharElement = document.getElementById("predictChar");
-    predictCharElement.innerHTML = predict_char;
-
-    const probabilityElement = document.getElementById("probability");
-    probabilityElement.innerHTML = "確率 = " + charProbability;
-
     //デバック用
-    console.log(charProbability + " の確率で\"" + predict_char + "\"");
+    //console.log(charProbability + " の確率で\"" + predict_char + "\"");
+
+    return [predict_char, charProbability];
+
 
 }
 
+function showResult(predictData){
 
+  const predictCharElement = document.getElementById("predictChar");
+  predictCharElement.innerHTML = predictData[0];
+
+  const probabilityElement = document.getElementById("probability");
+  probabilityElement.innerHTML = "一致率 = " + predictData[1];
+
+  console.log(predictData[1] + " の一致率で\"" + predictData[0] + "\"");
+}
