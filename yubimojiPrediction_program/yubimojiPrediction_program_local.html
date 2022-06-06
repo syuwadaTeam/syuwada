@@ -86,6 +86,9 @@ const allMoji = "あいうえお"
                +"らりるれろ"
                +"わをん";
 
+let hand_vector = new Object();
+let last_center = new Object();
+let last_width;
 
 window.onload = function() {
 
@@ -152,16 +155,54 @@ function recvResults(results) {
       drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 1,radius:2});
 
       const normalized_landmarks = return_normalized_landmarks(landmarks, results.image, gain);
-      const corner = normalized_landmarks.corner;
+
       const sizeRateX = canvasElement.width / results.image.width;
       const sizeRateY = canvasElement.height / results.image.height;
+      const width = normalized_landmarks.width * sizeRateX;
+      const height = normalized_landmarks.width * sizeRateY;
+      const corner_x = normalized_landmarks.corner.x * sizeRateX;
+      const corner_y = normalized_landmarks.corner.y * sizeRateY;
+      const center_x = corner_x + width / 2;
+      const center_y = corner_y + height / 2;
+
+      // 手を検出した最初の一回の時のみ実行される。
+      if(last_center.x == null){
+        last_center.x = center_x;
+        last_center.y = center_y;
+        last_width = width;
+      }
+
+      const move_x = center_x - last_center.x;
+      const move_y = center_y - last_center.y;
+      const move_z = width - last_width;
+      last_center.x = center_x;
+      last_center.y = center_y;
+      last_width = width;
+      // 逆方向に動いたらベクトルを0に初期化
+      if((move_x * hand_vector.x) < 0)  hand_vector.x = 0;
+      if((move_y * hand_vector.y) < 0)  hand_vector.y = 0;
+      if((move_y * hand_vector.z) < 0)  hand_vector.z = 0;
+      hand_vector.x += move_x;
+      hand_vector.y += move_y;
+      hand_vector.z += move_z;
+      console.log(hand_vector.z);
+
       canvasCtx.strokeStyle = '#00f';
-      canvasCtx.lineWidth = 3;
-      canvasCtx.strokeRect(corner.x * sizeRateX,
-                           corner.y * sizeRateY,
-                           normalized_landmarks.width * sizeRateX,
-                           normalized_landmarks.width * sizeRateY
-                          );
+      canvasCtx.fillStyle = '#00f';
+      canvasCtx.lineWidth = 5;
+      canvasCtx.beginPath();
+      canvasCtx.arc(center_x, center_y, 3, 0, 360 * (Math.PI/180), 0);  //中心点
+      canvasCtx.fill();
+      canvasCtx.lineWidth = 2;
+      const vector_range =  Math.sqrt( Math.pow( hand_vector.x, 2 ) + Math.pow( hand_vector.y, 2 ) );
+      //手の幅の半分以上動いたら、線を赤にする
+      if(width * 0.5 <= vector_range) canvasCtx.strokeStyle = '#f00'; else canvasCtx.strokeStyle = '#00f';
+      canvasCtx.moveTo(center_x, center_y);
+      canvasCtx.lineTo(center_x - hand_vector.x, center_y - hand_vector.y);
+      canvasCtx.stroke();
+      //横幅が小さくなったら手前に引いたと判断し、線を赤にする
+      if(hand_vector.z <= -60.0) canvasCtx.strokeStyle = '#f00'; else canvasCtx.strokeStyle = '#00f';
+      canvasCtx.strokeRect(corner_x, corner_y, width, height);
 
       predict_yubimoji(normalized_landmarks.landmarks.flat())
       .then(ret => {
@@ -175,6 +216,10 @@ function recvResults(results) {
 
     }
   }else{  //手が無かったら...
+
+    //手の座標の初期化
+    hand_vector.x = hand_vector.y = hand_vector.z = 0;
+    last_center.x = last_center.y = last_width = null;
 
     const predictCharElement = document.getElementById("predictChar");
     predictCharElement.innerHTML = "？";
@@ -264,7 +309,7 @@ function showResult(predictData){
   const probabilityElement = document.getElementById("probability");
   probabilityElement.innerHTML = "一致率 = " + predictData[1];
 
-  console.log(predictData[1] + " の一致率で\"" + predictData[0] + "\"");
+  console.log("\"" + predictData[0] + "\" \n( 一致率 = " + predictData[1] + " )");
 }
 
 
