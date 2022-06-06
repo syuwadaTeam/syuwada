@@ -1,3 +1,4 @@
+      
 
 const gain = 0.1;
 
@@ -12,6 +13,16 @@ const allMoji = "あいうえお"
                +"やゆよ"
                +"らりるれろ"
                +"わをん";
+
+const dakuonMoji = "かきくけこ"
+                   +"さしすせそ"
+                   +"たちつてと"
+                   +"はひふへほ";
+
+const hanDakuonMoji = "はひふへほ";
+const youonMoji = "やゆよつ";
+
+
 
 let hand_vector = new Object();
 let last_center = new Object();
@@ -112,7 +123,6 @@ function recvResults(results) {
       hand_vector.x += move_x;
       hand_vector.y += move_y;
       hand_vector.z += move_z;
-      console.log(hand_vector.z);
 
       canvasCtx.strokeStyle = '#00f';
       canvasCtx.fillStyle = '#00f';
@@ -128,7 +138,7 @@ function recvResults(results) {
       canvasCtx.lineTo(center_x - hand_vector.x, center_y - hand_vector.y);
       canvasCtx.stroke();
       //横幅が小さくなったら手前に引いたと判断し、線を赤にする
-      if(hand_vector.z <= -60.0) canvasCtx.strokeStyle = '#f00'; else canvasCtx.strokeStyle = '#00f';
+      if(hand_vector.z <= ( width * -0.08 )) canvasCtx.strokeStyle = '#f00'; else canvasCtx.strokeStyle = '#00f';
       canvasCtx.strokeRect(corner_x, corner_y, width, height);
 
       predict_yubimoji(normalized_landmarks.landmarks.flat())
@@ -238,3 +248,4 @@ function showResult(predictData){
 
   console.log("\"" + predictData[0] + "\" \n( 一致率 = " + predictData[1] + " )");
 }
+
