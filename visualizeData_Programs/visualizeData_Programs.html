@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>visualizeData_Programs</title>
+</head>
+    <style>
+    </style>
+<body>
+  <canvas id="canvas" width="500" height="500"></canvas>
+  <div id="app">
+     <form>
+         <input id="file" type="file" name="file">
+   </form>
+  </div>
+ <script>
+
+  //背景
+  //const cs = document.createElement('canvas'); //ここでキャンバス新しく作ってたのが原因
+  const cs = document.getElementById('canvas');
+  const ctx = cs.getContext('2d');
+  cs.width = '500';
+  cs.height = '500';
+  document.body.appendChild(cs);
+
+  ctx.lineWidth = 3;
+
+  let input = document.getElementById('file');
+  let reader = new FileReader();
+
+  const allMoji = "あいうえお"
+                 +"かきくけこ"
+                 +"さしすせそ"
+                 +"たちつてと"
+                 +"なにぬねの"
+                 +"はひふへほ"
+                 +"まみむめも"
+                 +"やゆよ"
+                 +"らりるれろ"
+                 +"わをん";
+
+  input.addEventListener('change', () => {
+
+    for(file of input.files){
+      //Fileオブジェクトのファイル内容を読み込む
+      reader.readAsText(file, 'UTF-8');
+      //ファイルの読み込み完了後に内容をコンソールに出力する
+      reader.onload = ()=> {
+
+        let arr = reader.result.split('\n');
+
+        let res;
+        for(var i = 0; i < arr.length; i++){
+          //空白行が出てきた時点で終了
+          if(arr[i] == '') break;
+
+          //","ごとに配列化
+          res = arr[i].split(',');
+          console.log(res);
+
+          let currentChar = allMoji[res[0]];
+          console.log(currentChar);
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height); //canvas初期化
+          ctx.fillStyle = '#000';
+          ctx.fillRect(0,0,500,500);
+
+          for(let i=4; i<64; i+=3){
+
+            if(Math.floor(i / 3)%4 == 0)  continue;
+
+            let currentX1 = res[i] * 500;
+            let currentY1 = res[i+1] * 500;
+            let currentX2 = res[i+3] * 500;
+            let currentY2 = res[i+3+1] * 500;
+            ctx.beginPath();
+            ctx.moveTo(currentX1, currentY1);
+            ctx.lineTo(currentX2, currentY2);
+            ctx.closePath();
+            ctx.strokeStyle = '#4DB56A';
+            ctx.stroke();
+          }
+
+          for(let i=1+3*5; i<1+3*18; i+=3*4){
+
+            let currentX1 = res[i] * 500;
+            let currentY1 = res[i+1] * 500;
+            let currentX2 = res[i+12] * 500;
+            let currentY2 = res[i+12+1] * 500;
+            ctx.beginPath();
+            ctx.moveTo(currentX1, currentY1);
+            ctx.lineTo(currentX2, currentY2);
+            ctx.closePath();
+            ctx.strokeStyle = '#4DB56A';
+            ctx.stroke();
+          }
+
+          let currentX1 = res[1] * 500;
+          let currentY1 = res[1+1] * 500;
+          let currentX2 = res[1+3] * 500;
+          let currentY2 = res[1+3+1] * 500;
+          ctx.beginPath();
+          ctx.moveTo(currentX1, currentY1);
+          ctx.lineTo(currentX2, currentY2);
+          ctx.closePath();
+          ctx.strokeStyle = '#4DB56A';
+          ctx.stroke();
+
+          currentX1 = res[1] * 500;
+          currentY1 = res[1+1] * 500;
+          currentX2 = res[1+15] * 500;
+          currentY2 = res[1+15+1] * 500;
+          ctx.beginPath();
+          ctx.moveTo(currentX1, currentY1);
+          ctx.lineTo(currentX2, currentY2);
+          ctx.closePath();
+          ctx.strokeStyle = '#4DB56A';
+          ctx.stroke();
+
+          currentX1 = res[1] * 500;
+          currentY1 = res[1+1] * 500;
+          currentX2 = res[1+3*17] * 500;
+          currentY2 = res[1+3*17+1] * 500;
+          ctx.beginPath();
+          ctx.moveTo(currentX1, currentY1);
+          ctx.lineTo(currentX2, currentY2);
+          ctx.closePath();
+          ctx.strokeStyle = '#4DB56A';
+          ctx.stroke();
+
+          for(let i=1; i<64; i+=3){
+
+            let currentX = res[i] * 500;
+            let currentY = res[i+1] * 500;
+            ctx.beginPath();
+            ctx.fillStyle = '#BF1E33';
+            ctx.arc(currentX, currentY, 4, 0, 360,0);
+            ctx.fill();
+          }
+
+          saveCanvas('canvas', currentChar);
+        }
+      };
+    }
+  });
+
+
+  function saveCanvas(canvas_id, char){
+
+    var downloadCanvas = document.getElementById(canvas_id);
+    //アンカータグを作成
+    var a = document.createElement('a');
+    //canvasをJPEG変換し、そのBase64文字列をhrefへセット
+    a.href = downloadCanvas.toDataURL('image/jpeg', 0.85);
+    //ダウンロード時のファイル名を指定
+    a.download = char + '_bone - .jpg';
+    //クリックイベントを発生させる
+    a.click();
+  }
+
+
+</script>
+
+</body>
+</html>
