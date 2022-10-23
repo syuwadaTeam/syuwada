@@ -85,7 +85,10 @@ function setNingyou(skinNumber) {
 function setOtehonn(char) {
     console.log("set otehonn");
 
-    const otehonn = createSprite();
+    const otehonn = createSprite(width / 2 - 153, height / 2 - 120);
+    if(json.strData.seionns.indexOf(char) != -1)
+        otehonn.addImage(img.otehonn[char]);
+        
     return otehonn;
 }
 
@@ -95,4 +98,36 @@ function setKannbann() {
     const kannbann = createSprite(width / 2, 0 -(img.kannbann.height / 2));
     kannbann.addImage(img.kannbann);
     return kannbann;
+}
+
+function setTehonnWaku() {
+    console.log("set tehonn waku");
+
+    const waku = createSprite(width / 2 - 153, 70);
+    waku.addImage(img.waku);
+    return waku;
+}
+
+function setCameraWaku() {
+    console.log("set camera waku");
+
+    const waku = createSprite(width / 2 + 153, 70);
+    waku.addImage(img.waku);
+    return waku;
+}
+
+function setWordWaku() {
+    console.log("set word waku");
+
+    const waku = createSprite(width / 2, height / 2 - 10);
+    waku.addImage(img.word_waku);
+    return waku;
+}
+
+function setTimeWaku() {
+    console.log("set time waku");
+
+    const waku = createSprite(width / 2, height / 5);
+    waku.addImage(img.time_waku);
+    return waku;
 }

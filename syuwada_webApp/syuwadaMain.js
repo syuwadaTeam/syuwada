@@ -4,35 +4,44 @@ const img = new Object();
 const json = new Object();
 function preload() {
 
-    img.btnStart = loadImage('./assets/btn_start.png');
-    img.btnAllmoji = loadImage('./assets/btn_allmoji.png');
-    img.btnSettings = loadImage('./assets/btn_settings.png');
-    img.btnGoTitle = loadImage('./assets/btn_goTitle.png');
-    img.btnRetry = loadImage('./assets/btn_retry.png');
+    const assetsUrlStr = 'https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/syuwada_webApp/assets';
 
-    img.kannbann = loadImage('./assets/kannbann.png');
-    img.maku_left = loadImage('./assets/maku_left.png');
-    img.maku_right = loadImage('./assets/maku_right.png');
-    img.makusita = loadImage('./assets/makusita.png');
-    img.makusode = loadImage('./assets/makusode.png');
-    img.background = loadImage('./assets/background.png');
+    img.btnStart = loadImage(`${assetsUrlStr}/btn_start.png`);
+    img.btnAllmoji = loadImage(`${assetsUrlStr}/btn_allmoji.png`);
+    img.btnSettings = loadImage(`${assetsUrlStr}/btn_settings.png`);
+    img.btnGoTitle = loadImage(`${assetsUrlStr}/btn_goTitle.png`);
+    img.btnRetry = loadImage(`${assetsUrlStr}/btn_retry.png`);
 
-    img.hand_front = loadImage('./assets/hand_1.png');
-    img.hand_behind = loadImage('./assets/hand_2.png');
+    img.kannbann = loadImage(`${assetsUrlStr}/kannbann.png`);
+    img.maku_left = loadImage(`${assetsUrlStr}/maku_left.png`);
+    img.maku_right = loadImage(`${assetsUrlStr}/maku_right.png`);
+    img.makusita = loadImage(`${assetsUrlStr}/makusita.png`);
+    img.makusode = loadImage(`${assetsUrlStr}/makusode.png`);
+    img.background = loadImage(`${assetsUrlStr}/background.png`);
+    img.waku = loadImage(`${assetsUrlStr}/waku.png`);
+    img.word_waku = loadImage(`${assetsUrlStr}/word_waku.png`);
+    img.time_waku = loadImage(`${assetsUrlStr}/time_waku.png`);
+    img.hand_front = loadImage(`${assetsUrlStr}/hand_1.png`);
+    img.hand_behind = loadImage(`${assetsUrlStr}/hand_2.png`);
 
-    img.ticket = [  loadImage('./assets/mode_1.png'), 
-                    loadImage('./assets/mode_2.png'),  
-                    loadImage('./assets/mode_3.png') ];
+    img.ticket = [  loadImage(`${assetsUrlStr}/mode_1.png`), 
+                    loadImage(`${assetsUrlStr}/mode_2.png`),  
+                    loadImage(`${assetsUrlStr}/mode_3.png`) ];
 
-    img.ticketSelectStandby = loadImage('./assets/mode_0_exp.png');
-    img.ticket_exp = [  loadImage('./assets/mode_1_exp.png'), 
-                        loadImage('./assets/mode_2_exp.png'),  
-                        loadImage('./assets/mode_3_exp.png') ];
+    img.ticketSelectStandby = loadImage(`${assetsUrlStr}/mode_0_exp.png`);
+    img.ticket_exp = [  loadImage(`${assetsUrlStr}/mode_1_exp.png`), 
+                        loadImage(`${assetsUrlStr}/mode_2_exp.png`),  
+                        loadImage(`${assetsUrlStr}/mode_3_exp.png`) ];
 
-    img.ningyou = [ loadImage('./assets/ningyou_1.png'), 
-                    loadImage('./assets/ningyou_2.png') ];
+    img.ningyou = [ loadImage(`${assetsUrlStr}/ningyou_1.png`), 
+                    loadImage(`${assetsUrlStr}/ningyou_2.png`) ];
 
-    json.strData = loadJSON('./assets/strData.json');
+    json.strData = loadJSON(`${assetsUrlStr}/strData.json`);
+
+    img.otehonn = new Object();
+    for(const char of "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん") {
+        img.otehonn[char] = loadImage(`${assetsUrlStr}/otehonn/${char}.png`);
+    }
 }
 
 function setup() {
@@ -44,6 +53,9 @@ function setup() {
     img.makusode.resize(width, height);
     img.makusita.resize(width, 0);
     img.background.resize(width, height);
+    for(const char in img.otehonn) {
+        img.otehonn[char].resize(img.waku.width - 20, 0);
+    }
     frameRate(40);
 
     //while(mediapipe_results == null){};

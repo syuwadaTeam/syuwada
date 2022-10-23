@@ -63,6 +63,10 @@ function setStandbyForHandScreen() {
 
     const sprites = new Object;
 
+    sprites.tehonnWaku = setTehonnWaku();
+    sprites.cameraWaku = setCameraWaku();
+    sprites.wordWaku = setWordWaku();
+    sprites.timeWaku = setTimeWaku();
     sprites.makusita = setMakusita();
     sprites.maku_right = setMaku("R", "close");
     sprites.maku_left = setMaku("L", "close");
@@ -103,7 +107,7 @@ function InitGameData() {
     }
     console.log(gameData);
     gameData.charCount = -1;
-    gameData.ningyouSpeed = 0.1;
+    gameData.ningyouSpeed = 2;
     gameData.nextTime = millis();
 }
 
