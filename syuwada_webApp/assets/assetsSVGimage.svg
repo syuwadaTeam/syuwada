@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="assetsSVGimage.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.6701559"
+     inkscape:cx="699.09106"
+     inkscape:cy="135.7893"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#b3b3b3;stroke-width:2.9255;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect428"
+       width="185.20833"
+       height="132.29167"
+       x="6.8833389"
+       y="120.75984" />
+    <rect
+       style="fill:#ff7f2a;stroke:#cccccc;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect312"
+       width="17.855936"
+       height="5.890357"
+       x="36.236031"
+       y="78.906494"
+       rx="0.79374999"
+       ry="0.79374999"
+       inkscape:export-filename="btn_gotoTitle.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.64583px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#333333;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="38.531338"
+       y="82.457581"
+       id="text1549"><tspan
+         sodipodi:role="line"
+         id="tspan1547"
+         style="fill:#333333;stroke:none;stroke-width:0.529167"
+         x="38.531338"
+         y="82.457581">goto Title</tspan></text>
+    <rect
+       style="fill:#ff7f2a;stroke:#cccccc;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect312-0"
+       width="17.855936"
+       height="5.890357"
+       x="36.236031"
+       y="86.882927"
+       rx="0.79374999"
+       ry="0.79374999"
+       inkscape:export-filename="btn_gotoGame.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.64583px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#333333;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="39.192795"
+       y="90.413338"
+       id="text1549-5"><tspan
+         sodipodi:role="line"
+         id="tspan1547-3"
+         style="fill:#333333;stroke:none;stroke-width:0.529167"
+         x="39.192795"
+         y="90.413338">goto Game</tspan></text>
+    <rect
+       style="fill:#ff7f2a;stroke:#cccccc;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect312-9"
+       width="17.855936"
+       height="5.890357"
+       x="36.236031"
+       y="95.137634"
+       rx="0.79374999"
+       ry="0.79374999"
+       inkscape:export-filename="buton1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.64583px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#333333;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="40.551884"
+       y="98.912216"
+       id="text1549-1"><tspan
+         sodipodi:role="line"
+         id="tspan1547-8"
+         style="fill:#333333;stroke:none;stroke-width:0.529167"
+         x="40.551884"
+         y="98.912216">button1</tspan></text>
+    <rect
+       style="fill:#ffe6d5;stroke-width:0.701241;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect372"
+       width="12.191562"
+       height="7.1914663"
+       x="98.209633"
+       y="44.194477"
+       rx="1.3939024"
+       ry="0.79374999"
+       inkscape:export-filename="ningyou_2.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#008080;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect370"
+       width="17.864025"
+       height="24.771568"
+       x="95.373421"
+       y="23.404608"
+       rx="0.79374999"
+       ry="0.79374999" />
+    <rect
+       style="fill:#800000;stroke-width:0.605259;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect586"
+       width="84.666664"
+       height="112.7879"
+       x="14.726469"
+       y="-149.98489"
+       inkscape:export-filename="maku_left.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 22.674814,-148.67713 V -38.504756"
+       id="path738" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 34.573284,-148.67713 V -38.504756"
+       id="path738-2" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 46.471764,-148.67713 V -38.504756"
+       id="path738-8" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 58.370234,-148.67713 V -38.504756"
+       id="path738-20" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 70.268704,-148.67713 V -38.504756"
+       id="path738-7" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 82.167184,-148.67713 V -38.504756"
+       id="path738-79" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 94.065654,-148.67713 V -38.504756"
+       id="path738-71" />
+    <rect
+       style="fill:#ffe6d5;stroke-width:0.701241;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect372-3"
+       width="12.191562"
+       height="7.1914663"
+       x="-81.082436"
+       y="44.194492"
+       rx="1.3939024"
+       ry="0.79374999"
+       transform="scale(-1,1)"
+       inkscape:export-filename="ningyou_1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#333333;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect370-9"
+       width="17.864025"
+       height="24.771568"
+       x="-83.918648"
+       y="23.404608"
+       rx="0.79374999"
+       ry="0.79374999"
+       transform="scale(-1,1)" />
+    <rect
+       style="fill:#800000;stroke:#ffcc00;stroke-width:0.79751;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect1627"
+       width="168.53583"
+       height="12.431657"
+       x="15.125227"
+       y="-168.78015"
+       inkscape:export-filename="makuue.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#784421;stroke:#502d16;stroke-width:0.79751;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect1889"
+       width="168.53583"
+       height="12.431657"
+       x="15.125212"
+       y="-24.606329"
+       inkscape:export-filename="makusita.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="rect4883"
+       transform="translate(-25.132276,-280.24543)"
+       style="fill:#800000"
+       inkscape:export-filename="makusode.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <path
+         style="color:#000000;fill:#800000;stroke:#550000;stroke-width:0.79375;stroke-linecap:round;-inkscape-stroke:none;paint-order:fill markers stroke"
+         d="m 13.58836,130.26053 h 15.781375 c 0.902089,9.87194 -0.34343,18.97679 -1.788896,32.73661 -1.445467,13.75981 -8.45851,45.86899 -8.099991,54.16204 0.717037,16.58611 4.73037,23.00398 9.888887,25.88925 H 13.58836 Z"
+         id="path5038"
+         sodipodi:nodetypes="cczsccc" />
+    </g>
+    <g
+       id="g5093"
+       transform="matrix(-1,0,0,1,225.73887,-280.24543)"
+       style="fill:#800000"
+       inkscape:export-filename="makusode_right.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <path
+         style="color:#000000;fill:#800000;stroke:#550000;stroke-width:0.79375;stroke-linecap:round;-inkscape-stroke:none;paint-order:fill markers stroke"
+         d="m 13.58836,130.26053 h 15.781375 c 0.902089,9.87194 -0.34343,18.97679 -1.788896,32.73661 -1.445467,13.75981 -8.45851,45.86899 -8.099991,54.16204 0.717037,16.58611 4.73037,23.00398 9.888887,25.88925 H 13.58836 Z"
+         id="path5091"
+         sodipodi:nodetypes="cczsccc" />
+    </g>
+    <rect
+       style="fill:#800000;stroke-width:0.605259;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect5095"
+       width="84.666664"
+       height="112.7879"
+       x="14.726469"
+       y="-149.98489"
+       inkscape:export-filename="maku_left.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 22.674814,-148.67713 V -38.504756"
+       id="path5097" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 34.573284,-148.67713 V -38.504756"
+       id="path5099" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 46.471764,-148.67713 V -38.504756"
+       id="path5101" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 58.370234,-148.67713 V -38.504756"
+       id="path5103" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 70.268704,-148.67713 V -38.504756"
+       id="path5105" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 82.167184,-148.67713 V -38.504756"
+       id="path5107" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 94.065654,-148.67713 V -38.504756"
+       id="path5109" />
+    <rect
+       style="fill:#800000;stroke-width:0.605259;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect5111"
+       width="84.666664"
+       height="112.7879"
+       x="-187.44331"
+       y="-149.98488"
+       inkscape:export-filename="maku_right.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       transform="scale(-1,1)" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 179.49498,-148.67712 V -38.504756"
+       id="path5113" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 167.59651,-148.67712 V -38.504756"
+       id="path5115" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 155.69803,-148.67712 V -38.504756"
+       id="path5117" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 143.79956,-148.67712 V -38.504756"
+       id="path5119" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 131.90109,-148.67712 V -38.504756"
+       id="path5121" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 120.00261,-148.67712 V -38.504756"
+       id="path5123" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 108.10414,-148.67712 V -38.504756"
+       id="path5125" />
+    <rect
+       style="fill:#800000;stroke-width:0.605259;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect5127"
+       width="84.666664"
+       height="112.7879"
+       x="-187.44331"
+       y="-149.98488"
+       inkscape:export-filename="maku_left.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       transform="scale(-1,1)" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 179.49498,-148.67712 V -38.504756"
+       id="path5129" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 167.59651,-148.67712 V -38.504756"
+       id="path5131" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 155.69803,-148.67712 V -38.504756"
+       id="path5133" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 143.79956,-148.67712 V -38.504756"
+       id="path5135" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 131.90109,-148.67712 V -38.504756"
+       id="path5137" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 120.00261,-148.67712 V -38.504756"
+       id="path5139" />
+    <path
+       style="fill:none;stroke:#550000;stroke-width:2.61553;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       d="M 108.10414,-148.67712 V -38.504756"
+       id="path5141" />
+    <rect
+       style="fill:#ececec;stroke:#550000;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect5143"
+       width="39.213264"
+       height="8.7964029"
+       x="132.13202"
+       y="58.711086"
+       ry="1.3229166"
+       rx="1.3229166"
+       inkscape:export-filename="btn_start.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#550000;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="139.23004"
+       y="65.242775"
+       id="text5719"><tspan
+         sodipodi:role="line"
+         id="tspan5717"
+         x="139.23004"
+         y="65.242775"
+         style="font-size:6.35px;fill:#550000;stroke:none;stroke-width:0.79375">スタート</tspan></text>
+    <rect
+       style="fill:#ececec;stroke:#550000;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect5771"
+       width="39.213264"
+       height="8.7964029"
+       x="132.13202"
+       y="71.579956"
+       ry="1.3229166"
+       rx="1.3229166"
+       inkscape:export-filename="btn_allmoji.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#550000;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="139.06035"
+       y="78.11412"
+       id="text5775"><tspan
+         sodipodi:role="line"
+         id="tspan5773"
+         x="139.06035"
+         y="78.11412"
+         style="font-size:6.35px;fill:#550000;stroke:none;stroke-width:0.79375">文字一覧</tspan></text>
+    <rect
+       style="fill:#ececec;stroke:#550000;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect5777"
+       width="39.213264"
+       height="8.7964029"
+       x="132.13202"
+       y="84.110168"
+       ry="1.3229166"
+       rx="1.3229166"
+       inkscape:export-filename="btn_settings.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#550000;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="145.44727"
+       y="90.619865"
+       id="text5781"><tspan
+         sodipodi:role="line"
+         id="tspan5779"
+         x="145.44727"
+         y="90.619865"
+         style="font-size:6.35px;fill:#550000;stroke:none;stroke-width:0.79375">設定</tspan><tspan
+         sodipodi:role="line"
+         x="145.44727"
+         y="98.557365"
+         style="font-size:6.35px;fill:#550000;stroke:none;stroke-width:0.79375"
+         id="tspan5885" /></text>
+    <ellipse
+       style="fill:#ffccaa;stroke:none;stroke-width:1.50822;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="path5939"
+       cx="252.59587"
+       cy="-18.390501"
+       rx="29.204542"
+       ry="16.762543"
+       inkscape:export-filename="hand.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#87deaa;stroke:none;stroke-width:0.669845;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect6075"
+       width="55.865421"
+       height="17.714788"
+       x="220.10582"
+       y="14.547211"
+       inkscape:export-filename="mode1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#1a1a1a;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="232.0302"
+       y="25.271442"
+       id="text6131"><tspan
+         sodipodi:role="line"
+         id="tspan6129"
+         style="fill:#1a1a1a;stroke-width:0.79375"
+         x="232.0302"
+         y="25.271442">チケット_1</tspan></text>
+    <rect
+       style="fill:#93ac93;stroke:none;stroke-width:0.669845;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect6075-4"
+       width="55.865421"
+       height="17.714788"
+       x="220.10582"
+       y="35.674709"
+       inkscape:export-filename="mode_2.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#1a1a1a;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="232.0302"
+       y="46.398937"
+       id="text6131-8"><tspan
+         sodipodi:role="line"
+         id="tspan6129-3"
+         style="fill:#1a1a1a;stroke-width:0.79375"
+         x="232.0302"
+         y="46.398937">チケット_2</tspan></text>
+    <rect
+       style="fill:#d5ffd5;stroke:none;stroke-width:0.669845;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect6075-9"
+       width="55.865421"
+       height="17.714788"
+       x="220.10582"
+       y="56.802208"
+       inkscape:export-filename="mode_3.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#1a1a1a;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="232.03021"
+       y="67.526443"
+       id="text6131-3"><tspan
+         sodipodi:role="line"
+         id="tspan6129-1"
+         style="fill:#1a1a1a;stroke-width:0.79375"
+         x="232.03021"
+         y="67.526443">チケット_3</tspan></text>
+    <rect
+       style="fill:#e3dbdb;stroke:#ac9393;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect6494"
+       width="145.28996"
+       height="32.152737"
+       x="215.96033"
+       y="99.454079"
+       rx="1.3229166"
+       ry="1.3229166"
+       inkscape:export-filename="mode_0_exp.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#483737;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="220.86133"
+       y="109.05159"
+       id="text6810"><tspan
+         sodipodi:role="line"
+         id="tspan6808"
+         x="220.86133"
+         y="109.05159"
+         style="fill:#483737;stroke:none;stroke-width:0.79375">選択してください</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#483737;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="226.56078"
+       y="120.1601"
+       id="text7072"><tspan
+         sodipodi:role="line"
+         id="tspan7070"
+         x="226.56078"
+         y="120.1601"
+         style="stroke-width:0.79375">...</tspan></text>
+    <rect
+       style="fill:#e3dbdb;stroke:#ac9393;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect7126"
+       width="145.28996"
+       height="32.152737"
+       x="215.96033"
+       y="137.70062"
+       rx="1.3229166"
+       ry="1.3229166"
+       inkscape:export-filename="mode_1_exp.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#483737;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="220.86133"
+       y="147.29814"
+       id="text7130"><tspan
+         sodipodi:role="line"
+         id="tspan7128"
+         x="220.86133"
+         y="147.29814"
+         style="fill:#483737;stroke:none;stroke-width:0.79375">チケット_1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#483737;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="226.56078"
+       y="158.40665"
+       id="text7134"><tspan
+         sodipodi:role="line"
+         id="tspan7132"
+         x="226.56078"
+         y="158.40665"
+         style="stroke-width:0.79375">説明</tspan></text>
+    <rect
+       style="fill:#e3dbdb;stroke:#ac9393;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect7126-4"
+       width="145.28996"
+       height="32.152737"
+       x="215.96033"
+       y="176.50201"
+       rx="1.3229166"
+       ry="1.3229166"
+       inkscape:export-filename="mode_2_exp.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#483737;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="220.86133"
+       y="186.09953"
+       id="text7130-4"><tspan
+         id="tspan7128-3"
+         x="220.86133"
+         y="186.09953"
+         style="fill:#483737;stroke:none;stroke-width:0.79375"
+         sodipodi:role="line">チケット_2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#483737;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="226.56079"
+       y="197.20804"
+       id="text7134-8"><tspan
+         sodipodi:role="line"
+         id="tspan7132-0"
+         x="226.56079"
+         y="197.20804"
+         style="stroke-width:0.79375">説明</tspan></text>
+    <rect
+       style="fill:#e3dbdb;stroke:#ac9393;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect7126-4-9"
+       width="145.28996"
+       height="32.152737"
+       x="215.96033"
+       y="215.30341"
+       rx="1.3229166"
+       ry="1.3229166" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#483737;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="220.86133"
+       y="224.90092"
+       id="text7130-4-2"><tspan
+         sodipodi:role="line"
+         id="tspan7128-3-9"
+         x="220.86133"
+         y="224.90092"
+         style="fill:#483737;stroke:none;stroke-width:0.79375">チケット_3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#483737;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="226.56079"
+       y="236.00943"
+       id="text7134-8-7"><tspan
+         sodipodi:role="line"
+         id="tspan7132-0-2"
+         x="226.56079"
+         y="236.00943"
+         style="stroke-width:0.79375">説明</tspan></text>
+    <rect
+       style="fill:#ececec;stroke:#550000;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="rect429"
+       width="39.213264"
+       height="8.7964029"
+       x="132.13202"
+       y="95.974976"
+       ry="1.3229166"
+       rx="1.3229166"
+       inkscape:export-filename="btn_settings.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Cica;-inkscape-font-specification:Cica;fill:#550000;stroke:none;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:fill markers stroke"
+       x="138.7906"
+       y="102.45057"
+       id="text435"><tspan
+         sodipodi:role="line"
+         id="tspan431"
+         x="138.7906"
+         y="102.45057"
+         style="font-size:6.35px;fill:#550000;stroke:none;stroke-width:0.79375">リトライ</tspan><tspan
+         sodipodi:role="line"
+         x="138.7906"
+         y="110.38807"
+         style="font-size:6.35px;fill:#550000;stroke:none;stroke-width:0.79375"
+         id="tspan433" /></text>
+  </g>
+</svg>
