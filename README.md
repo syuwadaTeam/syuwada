@@ -20,5 +20,5 @@
   
 ### 3.手話打をwebアプリケーションとして開発
   - UIなどの案、作成
-  - pc対応
+  - pc対応 → glitchで試作を公開 https://slime-gem-hide.glitch.me/
   - できればスマホ対応
