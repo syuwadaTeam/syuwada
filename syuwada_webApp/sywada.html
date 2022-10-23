@@ -1,0 +1,31 @@
+<html>
+<head lang="jp">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<!-- tensorflowjsの読み込み | 指文字予測用の、機械学習ライブラリ -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+
+    <!-- media pipeの読み込み | 手の骨格取得や認識結果の描画に使用 -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+	<!-- p5jsの読み込み。グラフィック描画用のライブラリ -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/addons/p5.sound.min.js"></script>
+	<!-- <script src="https://p5play.org/v3/planck.js"></script> -->
+	<script src="https://p5play.org/v2/p5.play.js"></script>
+
+	<script src="UIparts.js"></script>
+	<script src="predictionWork.js"></script>
+	<script src="scenes.js"></script>
+	<script src="syuwadaMain.js"></script>
+</head>
+<body>
+    <div id="p5canvas"></div>
+	<video id="input_video"></video>
+	<script src="setupCamera.js"></script>
+</body>
+</html>
