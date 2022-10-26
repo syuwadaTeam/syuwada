@@ -2,6 +2,8 @@
 
 const img = new Object();
 const json = new Object();
+const font = new Object();
+
 function preload() {
 
     const assetsUrlStr = 'https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/syuwada_webApp/assets';
@@ -23,6 +25,7 @@ function preload() {
     img.time_waku = loadImage(`${assetsUrlStr}/time_waku.png`);
     img.hand_front = loadImage(`${assetsUrlStr}/hand_1.png`);
     img.hand_behind = loadImage(`${assetsUrlStr}/hand_2.png`);
+    img.logo = loadImage(`${assetsUrlStr}/logo.png`);
 
     img.ticket = [  loadImage(`${assetsUrlStr}/mode_1.png`), 
                     loadImage(`${assetsUrlStr}/mode_2.png`),  
@@ -33,8 +36,9 @@ function preload() {
                         loadImage(`${assetsUrlStr}/mode_2_exp.png`),  
                         loadImage(`${assetsUrlStr}/mode_3_exp.png`) ];
 
-    img.ningyou = [ loadImage(`${assetsUrlStr}/ningyou_1.png`), 
-                    loadImage(`${assetsUrlStr}/ningyou_2.png`) ];
+    img.ningyou = [ loadImage(`${assetsUrlStr}/ningyou_1.png`),
+                    loadImage(`${assetsUrlStr}/ningyou_2.png`), 
+                    loadImage(`${assetsUrlStr}/ningyou_3.png`) ];
 
     json.strData = loadJSON(`${assetsUrlStr}/strData.json`);
 
@@ -42,6 +46,8 @@ function preload() {
     for(const char of "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん") {
         img.otehonn[char] = loadImage(`${assetsUrlStr}/otehonn/${char}.png`);
     }
+
+    font.mpHeavy = loadFont(`${assetsUrlStr}/fonts/mplus-2c-heavy.ttf`);
 }
 
 function setup() {
@@ -123,9 +129,10 @@ function draw() {
             break;
     }
 
-    textSize(15);
+    textFont("Monospace");
     textAlign(LEFT, TOP);
-    text('Scene: ' + currentScene + '\nfps: ' + frameRate(), 30, 10);
+    textSize(15);
+    //text('Scene: ' + currentScene + '\nfps: ' + frameRate(), 30, 10);
     // console.log('fps: ' + frameRate());
 
 }
