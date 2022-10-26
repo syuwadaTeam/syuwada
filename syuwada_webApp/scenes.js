@@ -13,6 +13,7 @@ function setTitleScreen() {
     sprites.maku_left = setMaku("L", "close");
     sprites.kannbann = setKannbann();
     sprites.kannbann.velocity.y = 50;
+    sprites.logo = setLogo();
     
     // スタートボタンがクリックされたときの関数
     const btnStartClicked = () => {
@@ -106,6 +107,7 @@ function InitGameData() {
             break;
     }
     console.log(gameData);
+    gameData.currentScore = 0;
     gameData.charCount = -1;
     gameData.ningyouSpeed = 2;
     gameData.nextTime = millis();
@@ -163,6 +165,7 @@ function titleScreenDraw() {
         sp.kannbann.velocity.y = 0;
     }
     sp.btnStart.position.y = sp.kannbann.position.y + 120;
+    sp.logo.position.y = sp.kannbann.position.y + 0;
        
     drawSprites();
 }
@@ -177,6 +180,7 @@ function btnStartClickedScreenDraw() {
         sp.kannbann.velocity.y = -50;
     }
     sp.btnStart.position.y = sp.kannbann.position.y + 120;
+    sp.logo.position.y = sp.kannbann.position.y + 0;
         
     drawSprites();
 
@@ -356,19 +360,42 @@ function gameScreenDraw() {
             sp.otehonn.remove();
             sp.otehonn = setOtehonn(gd.currentChar);
             gd.intervalCount = 5;
+            gd.currentScore++;
         }
     }
 
     drawSprites();
-    
-    image(img.makusode, 0, 0, width, height);
 
+    textFont(font.mpHeavy);
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    [...gd.currentWord].forEach((char, index, word) => {
+        const textX = width / 2 - ((textSize() + 5) * word.length - 5) / 2 + index * (textSize() + 5);
+        index < gd.charCount? fill(128) : fill(0);
+        text(char, textX, sp.wordWaku.position.y - 4);
+    });
+    fill(0);
+
+    textSize(10);
+    text("残り時間", width / 2, sp.timeWaku.position.y + 8);
+    textSize(30);
+    text(gd.time, width / 2, sp.timeWaku.position.y + 30);
+    textSize(10);
+    text("秒", width / 2, sp.timeWaku.position.y + 57);
+
+    textSize(10);
+    text("(カメラ画像予定)", sp.cameraWaku.position.x, sp.cameraWaku.position.y + 60);
+
+    image(img.makusode, 0, 0, width, height);
+    
+    textFont("Monospace");
     textAlign(LEFT, TOP);
     textSize(20);
     const str =  "残り時間: " + gd.time + "\n"
                + "ワード: " + gd.currentWord + "\n"
                + "文字: " + gd.currentChar + "\n"
-               + "文字数: " + gd.charCount;
+               + "文字数: " + gd.charCount + "\n"
+               + "スコア: " + gd.currentScore;
     text(str, 20, 100);
 
     // 残り時間が0以下なら、ゲーム終了

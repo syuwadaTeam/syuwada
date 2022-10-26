@@ -77,7 +77,7 @@ function setBehindHand() {
 function setNingyou(skinNumber) {
     console.log("set ningyou");
 
-    const ningyou = createSprite(0 - img.ningyou[skinNumber].width / 2, height / 4 * 3);
+    const ningyou = createSprite(0 - img.ningyou[skinNumber].width / 2, height / 4 * 3 - 10);
     ningyou.addImage(img.ningyou[skinNumber]);
     return ningyou;
 }
@@ -130,4 +130,12 @@ function setTimeWaku() {
     const waku = createSprite(width / 2, height / 5);
     waku.addImage(img.time_waku);
     return waku;
+}
+
+function setLogo() {
+    console.log("set logo");
+
+    const logo = createSprite(width / 2, 0 - img.logo.height);
+    logo.addImage(img.logo);
+    return logo;
 }
