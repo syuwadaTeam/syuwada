@@ -2,7 +2,7 @@
 let mediapipe_results = null;
 
 const videoElement = document.getElementById("input_video");
-videoElement.style.display = "hidden";
+videoElement.style.visibility = "hidden";
 
 const hands = new Hands({
 locateFile: (file) => {
