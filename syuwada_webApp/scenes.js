@@ -73,7 +73,7 @@ function setStandbyForHandScreen() {
     sprites.maku_left = setMaku("L", "close");
     sprites.makusode = setMakusode();
 
-    img.videoImage = createGraphics(videoElement.clientWidth, videoElement.clientHeight);
+    img.videoImage = createGraphics(webCamera.h.width, webCamera.h.height);
 
     // タイトルへ戻るボタンがクリックされたときの関数
     const btnGoTitleClicked = () => {
@@ -390,8 +390,8 @@ function gameScreenDraw() {
         const wakuOriginx = sp.cameraWaku.position.x - 66;
         const wakuOriginy = sp.cameraWaku.position.y - 7;
         const sizeRato = img.videoImage.height / img.videoImage.width;
-        const camImg_width = (videoElement.clientWidth > videoElement.clientHeight)? wakuMaxWidth : (1 - sizeRato) * wakuMaxWidth;
-        const camImg_height = (videoElement.clientHeight > videoElement.clientWidth)? wakuMaxWidth : sizeRato * wakuMaxWidth;
+        const camImg_width = (webCamera.h.width > webCamera.h.height)? wakuMaxWidth : (1 - sizeRato) * wakuMaxWidth;
+        const camImg_height = (webCamera.h.height > webCamera.h.width)? wakuMaxWidth : sizeRato * wakuMaxWidth;
         const camImg_x = (camImg_width == wakuMaxWidth)? wakuOriginx : wakuOriginx + wakuMaxWidth / 2 - camImg_width / 2;
         const camImg_y = (camImg_height == wakuMaxWidth)? wakuOriginy : wakuOriginy + wakuMaxWidth / 2 - camImg_height / 2;
         image(img.videoImage, camImg_x, camImg_y, camImg_width, camImg_height);
