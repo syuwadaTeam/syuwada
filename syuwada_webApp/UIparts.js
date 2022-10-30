@@ -86,9 +86,39 @@ function setOtehonn(char) {
     console.log("set otehonn");
 
     const otehonn = createSprite(width / 2 - 153, height / 2 - 120);
-    if(json.strData.seionns.indexOf(char) != -1)
-        otehonn.addImage(img.otehonn[char]);
-        
+    otehonn.charType = getCharType(char);
+    otehonn.charNum = getCharNum(char, otehonn.charType);
+    if(otehonn.charNum != -1)
+        otehonn.addImage(img.otehonn[json.strData.seionns[otehonn.charNum]]);
+    otehonn.move = function(){
+        switch (this.charType) {
+            case 0:
+                break;
+            case 1:
+                if(this.position.x > width / 2 - 120)
+                    this.position.x = width / 2 - 180;
+                else
+                    this.position.x += 2;
+                break;
+            case 2:
+                if(this.position.y < height / 2 - 140)
+                    this.position.y = height / 2 - 100;
+                else
+                    this.position.y -= 2;
+                break;
+            case 3:
+                if(this.width < 20)
+                    this.width = 50;
+                else
+                    this.width -= 2;
+                break;
+            case 4:
+                break;
+            default:
+                break;
+        }
+    };
+
     return otehonn;
 }
 
@@ -138,4 +168,28 @@ function setLogo() {
     const logo = createSprite(width / 2, 0 - img.logo.height);
     logo.addImage(img.logo);
     return logo;
+}
+
+function kannbannDown(kannbannSprite) {
+    const kannbann_minY = 180;
+    if(kannbannSprite.velocity.y == 50 && kannbannSprite.position.y >= kannbann_minY) {
+        kannbannSprite.velocity.y = -20;
+    }
+    if(kannbannSprite.velocity.y == -20 && kannbannSprite.position.y <= kannbann_minY - 15) {
+        kannbannSprite.velocity.y = 10;
+    } 
+    if(kannbannSprite.velocity.y == 10 && kannbannSprite.position.y >= kannbann_minY) {
+        kannbannSprite.velocity.y = 0;
+    }
+
+    return kannbannSprite.velocity.y == 0;
+}
+
+function kannbannUp(kannbannSprite) {
+    const kannbann_minY = 180;
+    if(kannbannSprite.velocity.y == 5 && kannbannSprite.position.y >= kannbann_minY + 40) {
+        kannbannSprite.velocity.y = -50;
+    }
+
+    return kannbannSprite.position.y < 0 - (kannbannSprite.height / 2);
 }

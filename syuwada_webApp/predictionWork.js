@@ -37,35 +37,13 @@ function isYubimojiCorrect(char) {
 
     // charTypeを取得
     // 0: 静的文字 1: 濁音文字 2: 半濁音文字 3: 拗音文字（「っ」も含まれる） 4: 特殊動的文字
-    const charType = function(char){
-        const strData = json.strData;
-        if(strData.dakuonns.indexOf(char) != -1)
-            return 1;
-        else if(strData.hanndakuonns.indexOf(char) != -1)
-            return 2;
-        else if(strData.youonns.indexOf(char) != -1)
-            return 3;
-        else if(strData.tokusyus.indexOf(char) != -1)
-            return 4;
-        else 
-            return 0;
-    }(char);
+    const charType = getCharType(char);
     console.log("Type = " + charType);
     console.log("char = " + char);
     console.log("status = " + hd.status);
 
     // charNumを取得
-    const charNum = function(char, charType){
-        const allMoji = json.strData.seionns;
-        // !!!! 長音のデータを取ってなかったので、長音と「ひ」が似ているので代用する（雑対応）。「ー」→「ひ」
-        if(char == "ー") return allMoji.indexOf("ひ");
-        switch (charType) {
-            case 1: return allMoji.indexOf(String.fromCodePoint(char.codePointAt(0) - 1));   // 濁音は文字コード-1 「ば」→「は」
-            case 2: return allMoji.indexOf(String.fromCodePoint(char.codePointAt(0) - 2));   // 半濁音は文字コード-2　「ぱ」→「は」
-            case 3: return allMoji.indexOf(String.fromCodePoint(char.codePointAt(0) + 1));   // 拗音は文字コード+1 「ゃ」→「や」
-            default: return allMoji.indexOf(char);   // 静音はそのまま
-        }
-    }(char, charType);
+    const charNum = getCharNum(char, charType);
 
     // 静的文字の処理
     if(charType == 0) {
@@ -225,4 +203,30 @@ async function updatePredictYubimojiArry(normalized_landmarks) {
 
     predictedArr.charOrder = arr;
     predictedArr.ratioOrder = sortArr;
+}
+
+function getCharType(char){
+    const strData = json.strData;
+    if(strData.dakuonns.indexOf(char) != -1)
+        return 1;
+    else if(strData.hanndakuonns.indexOf(char) != -1)
+        return 2;
+    else if(strData.youonns.indexOf(char) != -1)
+        return 3;
+    else if(strData.tokusyus.indexOf(char) != -1)
+        return 4;
+    else 
+        return 0;
+}
+
+function getCharNum(char, charType){
+    const allMoji = json.strData.seionns;
+    // !!!! 長音のデータを取ってなかったので、長音と「ひ」が似ているので代用する（雑対応）。「ー」→「ひ」
+    if(char == "ー") return allMoji.indexOf("ひ");
+    switch (charType) {
+        case 1: return allMoji.indexOf(String.fromCodePoint(char.codePointAt(0) - 1));   // 濁音は文字コード-1 「ば」→「は」
+        case 2: return allMoji.indexOf(String.fromCodePoint(char.codePointAt(0) - 2));   // 半濁音は文字コード-2　「ぱ」→「は」
+        case 3: return allMoji.indexOf(String.fromCodePoint(char.codePointAt(0) + 1));   // 拗音は文字コード+1 「ゃ」→「や」
+        default: return allMoji.indexOf(char);   // 静音はそのまま
+    }
 }

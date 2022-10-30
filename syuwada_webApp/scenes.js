@@ -73,6 +73,8 @@ function setStandbyForHandScreen() {
     sprites.maku_left = setMaku("L", "close");
     sprites.makusode = setMakusode();
 
+    img.videoImage = createGraphics(videoElement.clientWidth, videoElement.clientHeight);
+
     // タイトルへ戻るボタンがクリックされたときの関数
     const btnGoTitleClicked = () => {
         console.log('btnGoitle clicked');
@@ -154,16 +156,7 @@ function setResultScreen() {
 // 看板が下がり、タイトル画面の描画
 function titleScreenDraw() {
     const sp = currentSprites;
-    const kannbann_minY = 180;
-    if(sp.kannbann.velocity.y == 50 && sp.kannbann.position.y >= kannbann_minY) {
-        sp.kannbann.velocity.y = -20;
-    }
-    if(sp.kannbann.velocity.y == -20 && sp.kannbann.position.y <= kannbann_minY - 15) {
-        sp.kannbann.velocity.y = 10;
-    } 
-    if(sp.kannbann.velocity.y == 10 && sp.kannbann.position.y >= kannbann_minY) {
-        sp.kannbann.velocity.y = 0;
-    }
+    kannbannDown(sp.kannbann);
     sp.btnStart.position.y = sp.kannbann.position.y + 120;
     sp.logo.position.y = sp.kannbann.position.y + 0;
        
@@ -175,16 +168,13 @@ function titleScreenDraw() {
 function btnStartClickedScreenDraw() {
 
     const sp = currentSprites;
-    const kannbann_minY = 180;
-    if(sp.kannbann.velocity.y == 5 && sp.kannbann.position.y >= kannbann_minY + 40) {
-        sp.kannbann.velocity.y = -50;
-    }
+    const isKannbannUp = kannbannUp(sp.kannbann);
     sp.btnStart.position.y = sp.kannbann.position.y + 120;
     sp.logo.position.y = sp.kannbann.position.y + 0;
         
     drawSprites();
 
-    if(sp.kannbann.position.y < 0 - (sp.kannbann.height / 2)) {
+    if(isKannbannUp) {
         sceneChange("MODE_SELECTION");
         return;
     }
@@ -344,21 +334,26 @@ function gameScreenDraw() {
     // 人形が端まで行ったら強制的に次のワードへ
     if(sp.ningyou.position.x > width + sp.ningyou.width / 2) {
         sp.ningyou.remove();
-        sp.otehonn.remove();
+        if(gd.currentChar != undefined)
+                sp.otehonn.remove();
         gd.charCount = -1;
     }
 
     if(gd.intervalCount > 0) gd.intervalCount--;
 
-    // 指文字が正しかったら次の文字へ
     if(gd.charCount >= 0 && gd.charCount < gd.currentWord.length && gd.intervalCount <= 0) {
+
+        sp.otehonn.move();
+
+        // 指文字が正しかったら次の文字へ
         if(isYubimojiCorrect(gd.currentChar)){
             console.log("correct - " + gd.currentChar);
             gd.charCount++;
             current_handData.status = "INIT";
             gd.currentChar = gd.currentWord[gd.charCount];
             sp.otehonn.remove();
-            sp.otehonn = setOtehonn(gd.currentChar);
+            if(gd.currentChar != undefined)
+                sp.otehonn = setOtehonn(gd.currentChar);
             gd.intervalCount = 5;
             gd.currentScore++;
         }
@@ -383,8 +378,24 @@ function gameScreenDraw() {
     textSize(10);
     text("秒", width / 2, sp.timeWaku.position.y + 57);
 
-    textSize(10);
-    text("(カメラ画像予定)", sp.cameraWaku.position.x, sp.cameraWaku.position.y + 60);
+    if(gd.currentChar != undefined) {
+        textSize(25);
+        text(gd.currentChar, sp.tehonnWaku.position.x, sp.tehonnWaku.position.y + 105);
+    }
+
+    // カメラ画像描画 （変数参照対策で別スコープ）
+    {
+        img.videoImage.drawingContext.drawImage(videoElement, 0, 0);
+        const wakuMaxWidth = 132;
+        const wakuOriginx = sp.cameraWaku.position.x - 66;
+        const wakuOriginy = sp.cameraWaku.position.y - 7;
+        const sizeRato = img.videoImage.height / img.videoImage.width;
+        const camImg_width = (videoElement.clientWidth > videoElement.clientHeight)? wakuMaxWidth : (1 - sizeRato) * wakuMaxWidth;
+        const camImg_height = (videoElement.clientHeight > videoElement.clientWidth)? wakuMaxWidth : sizeRato * wakuMaxWidth;
+        const camImg_x = (camImg_width == wakuMaxWidth)? wakuOriginx : wakuOriginx + wakuMaxWidth / 2 - camImg_width / 2;
+        const camImg_y = (camImg_height == wakuMaxWidth)? wakuOriginy : wakuOriginy + wakuMaxWidth / 2 - camImg_height / 2;
+        image(img.videoImage, camImg_x, camImg_y, camImg_width, camImg_height);
+    }
 
     image(img.makusode, 0, 0, width, height);
     
@@ -429,58 +440,63 @@ function gameFinishScreenDraw() {
 // 看板が下がり、リザルト画面の描画
 function resultScreenDraw() {
     const sp = currentSprites;
-    const kannbann_minY = 180;
-    if(sp.kannbann.velocity.y == 50 && sp.kannbann.position.y >= kannbann_minY) {
-        sp.kannbann.velocity.y = -20;
-    }
-    if(sp.kannbann.velocity.y == -20 && sp.kannbann.position.y <= kannbann_minY - 15) {
-        sp.kannbann.velocity.y = 10;
-    } 
-    if(sp.kannbann.velocity.y == 10 && sp.kannbann.position.y >= kannbann_minY) {
-        sp.kannbann.velocity.y = 0;
-    }
+    kannbannDown(sp.kannbann);
     sp.btnGoTitle.position.y = sp.kannbann.position.y + 120;
     sp.btnRetry.position.y = sp.kannbann.position.y + 120;
-       
     drawSprites();
+    textFont(font.mpHeavy);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    text("リザルト", width / 2, sp.kannbann.position.y - 20);
+    textSize(25);
+    textAlign(CENTER, CENTER);
+    text(`スコア: ${gameData.currentScore}`, width / 2, sp.kannbann.position.y + 50);
 }
 
 // scene: RESULT_TO_TITLE
 // リザルトのタイトルへ戻るボタンが押されたとき看板を上げるまでの描画
 function result_to_title_ScreenDraw() {
     const sp = currentSprites;
-    const kannbann_minY = 180;
-    if(sp.kannbann.velocity.y == 5 && sp.kannbann.position.y >= kannbann_minY + 40) {
-        sp.kannbann.velocity.y = -50;
-    }
+    const isKannbannUp = kannbannUp(sp.kannbann);
     sp.btnGoTitle.position.y = sp.kannbann.position.y + 120;
     sp.btnRetry.position.y = sp.kannbann.position.y + 120;
-        
+    
     drawSprites();
+    textFont(font.mpHeavy);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    text("リザルト", width / 2, sp.kannbann.position.y - 20);
+    textSize(25);
+    textAlign(CENTER, CENTER);
+    text(`スコア: ${gameData.currentScore}`, width / 2, sp.kannbann.position.y + 50);
 
     if(sp.kannbann.position.y < 0 - (sp.kannbann.height / 2)) {
         sceneChange("TITLE");
         return;
-    } 
+    }
 }
 
 // scene: RESULT_TO_STANDBY_FOR_HAND
 // リザルトのリトライボタンが押されたとき看板を上げるまでの描画
 function result_to_standByForHand_ScreenDraw() {
     const sp = currentSprites;
-    const kannbann_minY = 180;
-    if(sp.kannbann.velocity.y == 5 && sp.kannbann.position.y >= kannbann_minY + 40) {
-        sp.kannbann.velocity.y = -50;
-    }
+    const isKannbannUp = kannbannUp(sp.kannbann);
     sp.btnGoTitle.position.y = sp.kannbann.position.y + 120;
     sp.btnRetry.position.y = sp.kannbann.position.y + 120;
 
     drawSprites();
+    textFont(font.mpHeavy);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    text("リザルト", width / 2, sp.kannbann.position.y - 20);
+    textSize(25);
+    textAlign(CENTER, CENTER);
+    text(`スコア: ${gameData.currentScore}`, width / 2, sp.kannbann.position.y + 50);
 
-    if(sp.kannbann.position.y < 0 - (sp.kannbann.height / 2)) {
+    if(isKannbannUp) {
         sceneChange("STANDBY_FOR_HAND");
         return;
-    } 
+    }
 }
 //
 // シーンチェンジをする関数

@@ -118,6 +118,7 @@ function draw() {
             break;
         case "RESULT":
             resultScreenDraw();
+            break;
         case "RESULT_TO_TITLE":
             result_to_title_ScreenDraw();
             break;
@@ -132,7 +133,7 @@ function draw() {
     textFont("Monospace");
     textAlign(LEFT, TOP);
     textSize(15);
-    //text('Scene: ' + currentScene + '\nfps: ' + frameRate(), 30, 10);
+    text('Scene: ' + currentScene + '\nfps: ' + frameRate(), 30, 10);
     // console.log('fps: ' + frameRate());
 
 }

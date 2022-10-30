@@ -24,11 +24,11 @@ hands.setOptions({
 });
 hands.onResults(recvResults);
 
-const cam = new Camera(videoElement, {
+const webCamera = new Camera(videoElement, {
     onFrame: async () => {
         await hands.send({ image: videoElement });
-    },
+    }, 
         width: 1280,
         height: 720,
     });
-cam.start();
+webCamera.start();
