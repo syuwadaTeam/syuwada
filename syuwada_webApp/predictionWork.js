@@ -172,7 +172,6 @@ function get_normalized_landmarksObj(landmarks, resultImg, gain){
     offset.y = point.y1 - ((len_whithMargin - len.y) / 2);
 
 
-
     normalizedPoint = landmarks.map(p => [(p.x * width - offset.x) / len_whithMargin,
                                           (p.y * height - offset.y) / len_whithMargin,
                                           p.z]);
@@ -193,7 +192,7 @@ const predictedArr =  {
                         ratioOrder : []
                       }
 async function updatePredictYubimojiArry(normalized_landmarks) {
-    const model = await tf.loadLayersModel('https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/yubimojiPrediction_program/Assets/model.json');
+    const model = await tf.loadLayersModel("https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/yubimojiPrediction_program/Assets/model.json");
     const y_pred = await model.predict( tf.tensor2d(normalized_landmarks.flat(), [1, 63]) );
     //Arrayに変換用
     const values = await y_pred.data();

@@ -193,3 +193,20 @@ function kannbannUp(kannbannSprite) {
 
     return kannbannSprite.position.y < 0 - (kannbannSprite.height / 2);
 }
+
+function setBlack(alpha) {
+    console.log("set black");
+
+    const black = createSprite(width / 2, height / 2, width, height);
+    black.shapeColor = color(0, alpha);
+    return black;
+}
+
+function setRuleSheet() {
+    console.log("set rule sheet");
+
+    const rule = createSprite(width / 2, height / 2 - 20, width * 0.7, height * 0.8);
+    //rule.addImage();
+    rule.shapeColor = color(255);
+    return rule;
+}

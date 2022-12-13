@@ -1,5 +1,4 @@
 
-
 const img = new Object();
 const json = new Object();
 const font = new Object();
@@ -11,6 +10,7 @@ function preload() {
     img.btnStart = loadImage(`${assetsUrlStr}/btn_start.png`);
     img.btnAllmoji = loadImage(`${assetsUrlStr}/btn_allmoji.png`);
     img.btnSettings = loadImage(`${assetsUrlStr}/btn_settings.png`);
+    img.btnRule = loadImage(`${assetsUrlStr}/btn_rule.png`);
     img.btnGoTitle = loadImage(`${assetsUrlStr}/btn_goTitle.png`);
     img.btnRetry = loadImage(`${assetsUrlStr}/btn_retry.png`);
 
@@ -31,10 +31,8 @@ function preload() {
                     loadImage(`${assetsUrlStr}/mode_2.png`),  
                     loadImage(`${assetsUrlStr}/mode_3.png`) ];
 
-    img.ticketSelectStandby = loadImage(`${assetsUrlStr}/mode_0_exp.png`);
-    img.ticket_exp = [  loadImage(`${assetsUrlStr}/mode_1_exp.png`), 
-                        loadImage(`${assetsUrlStr}/mode_2_exp.png`),  
-                        loadImage(`${assetsUrlStr}/mode_3_exp.png`) ];
+    img.ticketSelectStandby = loadImage(`${assetsUrlStr}/mode_standby.png`);
+    img.ticket_exp = loadImage(`${assetsUrlStr}/mode_exp.png`);
 
     img.ningyou = [ loadImage(`${assetsUrlStr}/ningyou_1.png`),
                     loadImage(`${assetsUrlStr}/ningyou_2.png`), 
@@ -59,6 +57,7 @@ function setup() {
     img.makusode.resize(width, height);
     img.makusita.resize(width, 0);
     img.background.resize(width, height);
+    img.btnGoTitle.resize(img.btnGoTitle.width * 0.8, 0);
     for(const char in img.otehonn) {
         img.otehonn[char].resize(img.waku.width - 20, 0);
     }
@@ -94,9 +93,29 @@ function draw() {
         case "BTN_START_CLICKED":
             btnStartClickedScreenDraw();
             break;
+        case "BTN_ALLMOJI_CLICKED":
+            blackOutScreenDraw();
+            break;
+        case "BTN_RULE_CLICKED":
+            blackOutScreenDraw();
+            break;
+        case "BTN_SETTINGS_CLICKED":
+            blackOutScreenDraw();
+            break;
+        case "BLACK_IN":
+            blackInScreenDraw();
+            break;
+        case "ALLMOJI":
+            allMojiScreenDraw();
+            break;
+        case "RULE":
+            ruleScreenDraw();
+            break;
+        case "SETTINGS":
+            settingsScreenDraw();
+            break;
         case "MODE_SELECTION":
             modeSelectionScreenDraw();
-            textSize(20);
             break;
         case "MODE_SELECTION_COMPLETE":
             modeSelectionCompleteScreenDraw();

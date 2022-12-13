@@ -23,11 +23,107 @@ function setTitleScreen() {
     }
     sprites.btnStart = setButton(width / 2, 0 - (sprites.kannbann.height / 4), img.btnStart, btnStartClicked);
 
+    // 文字一覧ボタンがクリックされたときの関数
+    const btnAllmojiClicked = () => {
+        console.log('btnAllmoji clicked');
+        if(currentScene != "TITLE")  return;
+        sceneChange("BTN_ALLMOJI_CLICKED");
+    }
+    sprites.btnAllmoji = setButton(width / 2, 0 - (sprites.kannbann.height / 4), img.btnAllmoji, btnAllmojiClicked);
+
+    // ルールボタンがクリックされたときの関数
+    const btnRuleClicked = () => {
+        console.log('btnRule clicked');
+        if(currentScene != "TITLE")  return;
+        sceneChange("BTN_RULE_CLICKED");
+    }
+    sprites.btnRule = setButton(width / 2, 0 - (sprites.kannbann.height / 4), img.btnRule, btnRuleClicked);
+
+    // 設定がクリックされたときの関数
+    const btnSettingsClicked = () => {
+        console.log('btnSettings clicked');
+        if(currentScene != "TITLE")  return;
+        sceneChange("BTN_SETTINGS_CLICKED");
+    }
+    sprites.btnSettings = setButton(width / 2 + 180, 0 - (sprites.kannbann.height / 4), img.btnSettings, btnSettingsClicked);
+
     sprites.makusode = setMakusode();
 
     return sprites;
 }
 
+// scene: BTN_ALLMOJI_CLICKED, BTN_SETTINGS_CLICKED, BTN_RULE_CLICKED
+function setBlackOutScreen() {
+    
+    console.log('set blackOut screen :' + allSprites.length);
+
+    const sprites = setTitleScreen();
+    sprites.kannbann.position.y = 185;
+    sprites.kannbann.velocity.y = 0;
+    sprites.btnStart.position.y = sprites.kannbann.position.y + 40;
+    sprites.btnAllmoji.position.y = sprites.kannbann.position.y + 80;
+    sprites.btnRule.position.y = sprites.kannbann.position.y + 120;
+    sprites.btnSettings.position.y = sprites.kannbann.position.y + 120;
+    sprites.logo.position.y = sprites.kannbann.position.y - 30;
+
+    sprites.black = setBlack(20);
+
+    // タイトルへ戻るボタンがクリックされたときの関数
+    const btnGoTitleClicked = () => {
+        console.log('btnGoitle clicked');
+        sceneChange("BLACK_IN");
+    }
+    sprites.btnGoTitle = setButton(600,  470, img.btnGoTitle, btnGoTitleClicked);
+
+    return sprites;
+}
+
+// scene: BLACK_IN
+function setBlackInScreen() {
+
+    console.log('set allmoji screen :' + allSprites.length);
+
+    const sprites = setBlackOutScreen();
+    sprites.black.shapeColor.setAlpha(130);
+    sprites.btnGoTitle.remove();
+
+    return sprites;
+}
+
+// scene: ALLMOJI
+function setAllMojiScreen() {
+    
+    console.log('set allmoji screen :' + allSprites.length);
+
+    const sprites = setBlackOutScreen();
+    sprites.black.shapeColor.setAlpha(130);
+
+    return sprites;
+}
+
+// scene: RULE
+function setRuleScreen() {
+    
+    console.log('set rule screen :' + allSprites.length);
+
+    const sprites = setBlackOutScreen();
+    sprites.black.shapeColor.setAlpha(130);
+
+    sprites.ruleSheet = setRuleSheet();
+
+    return sprites;
+}
+
+// scene: SETTINGS
+function setSettingsScreen() {
+    
+    console.log('set settings screen :' + allSprites.length);
+
+    const sprites = setBlackOutScreen();
+    sprites.black.shapeColor.setAlpha(130);
+    
+    return sprites;
+}
 
 
 // scene: MODE_SELECTION
@@ -93,15 +189,15 @@ function InitGameData() {
     switch (gameData.mode) {
         case 0:
             gameData.wordList = [...wordListData.hiraganas]; // ひらがな文字列を配列に
-            gameData.time = 90;
+            gameData.time = 60;
             break;
         case 1:
             gameData.wordList = wordListData.words.filter(word => word.length <= 5); // 長さ5文字以下の単語のみ
-            gameData.time = 120;
+            gameData.time = 90;
             break;
         case 2:
             gameData.wordList = wordListData.words.filter(word => word.length >= 3 && word.length <= 10)  // 長さ3以上、10以下の単語のみ
-            gameData.time = 190;
+            gameData.time = 120;
             break;
         default:
             console.error("正しいモードが選択されていない");
@@ -157,10 +253,82 @@ function setResultScreen() {
 function titleScreenDraw() {
     const sp = currentSprites;
     kannbannDown(sp.kannbann);
-    sp.btnStart.position.y = sp.kannbann.position.y + 120;
-    sp.logo.position.y = sp.kannbann.position.y + 0;
+    sp.btnStart.position.y = sp.kannbann.position.y + 40;
+    sp.btnAllmoji.position.y = sp.kannbann.position.y + 80;
+    sp.btnRule.position.y = sp.kannbann.position.y + 120;
+    sp.btnSettings.position.y = sp.kannbann.position.y + 120;
+    sp.logo.position.y = sp.kannbann.position.y - 30;
        
     drawSprites();
+}
+
+// scene: ALLMOJI
+// 文字一覧表の描画
+function allMojiScreenDraw() {
+    
+    drawSprites();
+}
+
+// scene: RULE
+// ルール画面の描画
+function ruleScreenDraw() {
+       
+    drawSprites();
+}
+
+// scene: SETTINGS
+// 設定画面の描画
+function settingsScreenDraw() {
+    
+    drawSprites();
+}
+
+// scene: BTN_ALLMOJI_CLICKED, BTN_SETTINGS_CLICKED, BTN_RULE_CLICKED
+// ブラックアウト(画面が暗くなる)
+function blackOutScreenDraw() {
+    
+    drawSprites();
+
+    const blackColor = currentSprites.black.shapeColor;
+    const blackAlphaInt = parseInt(blackColor.toString("#rrggbbaa").substring(7, 9), 16);   // 16進数のalpha値をintに変換  
+    const maxAlpha = 130;
+    if(blackAlphaInt < maxAlpha) {
+        const remaining = maxAlpha - blackAlphaInt;
+        const nextAlpha = remaining < 50 ? blackAlphaInt + remaining : blackAlphaInt + 50;
+        currentSprites.black.shapeColor.setAlpha(nextAlpha);
+    }else {
+        switch (currentScene) {
+            case "BTN_ALLMOJI_CLICKED":
+                sceneChange("ALLMOJI");
+                break;
+            case "BTN_RULE_CLICKED":
+                sceneChange("RULE");
+                break;
+            case "BTN_SETTINGS_CLICKED":
+                sceneChange("SETTINGS");
+                break;
+            default:
+                break;
+        }
+        return;
+    }
+}
+
+// scene: BLACK_IN
+// ブラックイン(画面が明るくなる)
+function blackInScreenDraw() {
+
+    drawSprites();
+
+    const blackColor = currentSprites.black.shapeColor;
+    const blackAlphaInt = parseInt(blackColor.toString("#rrggbbaa").substring(7, 9), 16);   // 16進数のalpha値をintに変換  
+    const minAlpha = 0;
+    if(blackAlphaInt > minAlpha) {
+        currentSprites.black.shapeColor.setAlpha(blackAlphaInt - 50);
+    }else {
+        sceneChange("TITLE_NOSET");
+        return;
+    }
 }
 
 // scene: BTN_START_CLICKED
@@ -169,8 +337,11 @@ function btnStartClickedScreenDraw() {
 
     const sp = currentSprites;
     const isKannbannUp = kannbannUp(sp.kannbann);
-    sp.btnStart.position.y = sp.kannbann.position.y + 120;
-    sp.logo.position.y = sp.kannbann.position.y + 0;
+    sp.btnStart.position.y = sp.kannbann.position.y + 40;
+    sp.btnAllmoji.position.y = sp.kannbann.position.y + 80;
+    sp.btnRule.position.y = sp.kannbann.position.y + 120;
+    sp.btnSettings.position.y = sp.kannbann.position.y + 120;
+    sp.logo.position.y = sp.kannbann.position.y - 30;
         
     drawSprites();
 
@@ -221,10 +392,42 @@ function modeSelectionScreenDraw() {
     drawSprites();
 
     // チケットの説明画像を表示
-    if(selectTicketNumber == null){
+    if(selectTicketNumber == null){ // チケット未選択時
         //image(img.ticketSelectStandby, width / 2 - img.ticketSelectStandby.width / 2, 30);
     }else{
-        image(img.ticket_exp[selectTicketNumber], width / 2 - img.ticket_exp[selectTicketNumber].width / 2, 30);
+        image(img.ticket_exp, width / 2 - img.ticket_exp.width / 2, 30);
+        textAlign(LEFT, TOP);
+        textSize(20);
+        textFont("Sawarabi Mincho");
+        fill(color("#834544")); //文字色茶色
+
+        switch (selectTicketNumber) {
+            case 0:
+                text("初級編", 90, 38);
+                textSize(15);
+                text("難易度: ★★☆☆☆", 100, 70);
+                text("制限時間: 60秒", 100, 90);
+                text("すべて一文字で出題されます。小さい文字、濁音、半濁音あり。\n一文字ずつ覚えるのに最適です。", 100, 110);
+                break;
+            case 1:
+                text("中級編", 90, 38);
+                textSize(15);
+                text("難易度: ★★★☆☆", 100, 70);
+                text("制限時間: 90秒", 100, 90);
+                text("5文字以下の単語が出題されます。", 100, 110);
+                break;
+            case 2:
+                text("上級編", 90, 38);
+                textSize(15);
+                text("難易度: ★★★★☆", 100, 70);
+                text("制限時間: 120秒", 100, 90);
+                text("3～10文字の単語が出題されます。", 100, 110);
+                break;
+            default:
+                break;
+        }
+
+        fill(0);
     }
 
     // チケットが選択&クリックされたとき
@@ -280,6 +483,7 @@ function modeSelection_to_title_ScreenDraw() {
 function standbyForHandScreenDraw() {
     drawSprites();
     textSize(40);
+    textFont(font.mpHeavy);
     textAlign(CENTER, TOP);
     text("手を映すとスタートします", width / 2, height / 3);
 
@@ -379,8 +583,14 @@ function gameScreenDraw() {
     text("秒", width / 2, sp.timeWaku.position.y + 57);
 
     if(gd.currentChar != undefined) {
-        textSize(25);
+        
+        textSize(23);
         text(gd.currentChar, sp.tehonnWaku.position.x, sp.tehonnWaku.position.y + 105);
+
+        if(getCharType(gd.currentChar) == 3) {  // 拗音なら"（小）"をつける
+            textSize(13);
+            text("（小）", sp.tehonnWaku.position.x + 25, sp.tehonnWaku.position.y + 110);
+        }
     }
 
     // カメラ画像描画 （変数参照対策で別スコープ）
@@ -509,8 +719,39 @@ function sceneChange(scene) {
             removeAllSprites();
             currentSprites = setTitleScreen();
             break;
+        case "TITLE_NOSET":
+            currentScene = "TITLE";
+            break;
+        case "BLACK_IN":
+            removeAllSprites();
+            currentSprites = setBlackInScreen();
+            break;
         case "BTN_START_CLICKED":
             currentSprites.kannbann.velocity.y = 5;
+            break;
+        case "BTN_ALLMOJI_CLICKED":
+            removeAllSprites();
+            currentSprites = setBlackOutScreen();
+            break;
+        case "BTN_RULE_CLICKED":
+            removeAllSprites();
+            currentSprites = setBlackOutScreen();
+            break;
+        case "BTN_SETTINGS_CLICKED":
+            removeAllSprites();
+            currentSprites = setBlackOutScreen();
+            break;
+        case "ALLMOJI":
+            removeAllSprites();
+            currentSprites = setAllMojiScreen();
+            break;
+        case "RULE":
+            removeAllSprites();
+            currentSprites = setRuleScreen();
+            break;
+        case "SETTINGS":
+            removeAllSprites();
+            currentSprites = setSettingsScreen();
             break;
         case "MODE_SELECTION":
             removeAllSprites();
