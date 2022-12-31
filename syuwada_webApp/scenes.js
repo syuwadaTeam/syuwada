@@ -66,7 +66,9 @@ function setBlackOutScreen() {
     sprites.btnSettings.position.y = sprites.kannbann.position.y + 120;
     sprites.logo.position.y = sprites.kannbann.position.y - 30;
 
-    sprites.black = setBlack(20);
+    sprites.black = setBlack(0);
+
+    //sprites.allMojiSheet = setAllMojiSheet();
 
     // タイトルへ戻るボタンがクリックされたときの関数
     const btnGoTitleClicked = () => {
@@ -86,6 +88,7 @@ function setBlackInScreen() {
     const sprites = setBlackOutScreen();
     sprites.black.shapeColor.setAlpha(130);
     sprites.btnGoTitle.remove();
+    //sprites.allMojiSheet.remove();
 
     return sprites;
 }
@@ -97,6 +100,12 @@ function setAllMojiScreen() {
 
     const sprites = setBlackOutScreen();
     sprites.black.shapeColor.setAlpha(130);
+
+    sprites.allMojiSheet = setAllMojiSheet();
+    sprites.allMojiSheet.selectMojiBrightness = 0;
+    sprites.allMojiSheet.selectedChar = "あ";
+    sprites.otehonnCharsets = setOtehonnCharset(sprites.allMojiSheet.selectedChar);
+    sprites.slecter = setSelecter();
 
     return sprites;
 }
@@ -265,8 +274,65 @@ function titleScreenDraw() {
 // scene: ALLMOJI
 // 文字一覧表の描画
 function allMojiScreenDraw() {
-    
+
+    const sp = currentSprites;
+
+    sp.otehonnCharsets.move();
+
     drawSprites();
+
+    textAlign(CENTER, CENTER);
+    textFont(font.mpHeavy);
+    textSize(23);
+    sp.otehonnCharsets.forEach((otehonn, index) => {
+        if(index % 2 == 0) {
+            const posx = sp.otehonnCharsets[index + 1].position.x;
+            const posy = sp.otehonnCharsets[index + 1].position.y + 40
+            text(otehonn.char, posx, posy);
+            if(otehonn.charType == 3) {  // 拗音なら"（小）"をつける
+                textSize(13);
+                text("（小）", posx + 25, posy + 5);
+            }
+        }
+    });
+
+    const allMoji = ["あいうえお", 
+                     "かきくけこ",
+                     "さしすせそ", 
+                     "たちつてと", 
+                     "なにぬねの",
+                     "はひふへほ", 
+                     "まみむめも", 
+                     "や_ゆ_よ", 
+                     "らりるれろ", 
+                     "わをん_ー"];
+
+    textAlign(LEFT, TOP);
+    textSize(24);
+    let mojiBrightness = sp.allMojiSheet.selectMojiBrightness;
+    // ひらがな配置とマウスクリック判定
+    allMoji.forEach((columnStr, row) => {
+        [...columnStr].forEach((char, index) => {
+            if(char != "_") {
+                const xpos = 560 - (row * (24 + 25));
+                const ypos = 240 + (index * (24 + 10));
+                if(sp.allMojiSheet.selectedChar == char) {
+                    fill(color(`hsb(0, 100%, ${mojiBrightness}%)`));
+                }
+                text(char, xpos, ypos);
+                fill(color('hsb(0, 100%, 0%)'));
+
+                const isMouseTouch = xpos - 3 < mouseX && mouseX < xpos + 24 + 3 && ypos - 3 < mouseY && mouseY < ypos + 24 + 3;
+                if(mouseIsPressed && isMouseTouch && sp.allMojiSheet.selectedChar != char) {
+                    sp.allMojiSheet.selectedChar = char;
+                    mojiBrightness = 100;
+                    sp.otehonnCharsets.remove();
+                    sp.otehonnCharsets = setOtehonnCharset(sp.allMojiSheet.selectedChar);
+                }
+            }
+        });
+    });
+    sp.allMojiSheet.selectMojiBrightness = mojiBrightness > 0 ? mojiBrightness - 5 : 0;
 }
 
 // scene: RULE
@@ -294,7 +360,7 @@ function blackOutScreenDraw() {
     const maxAlpha = 130;
     if(blackAlphaInt < maxAlpha) {
         const remaining = maxAlpha - blackAlphaInt;
-        const nextAlpha = remaining < 50 ? blackAlphaInt + remaining : blackAlphaInt + 50;
+        const nextAlpha = remaining < 30 ? blackAlphaInt + remaining : blackAlphaInt + 30;
         currentSprites.black.shapeColor.setAlpha(nextAlpha);
     }else {
         switch (currentScene) {
@@ -324,7 +390,7 @@ function blackInScreenDraw() {
     const blackAlphaInt = parseInt(blackColor.toString("#rrggbbaa").substring(7, 9), 16);   // 16進数のalpha値をintに変換  
     const minAlpha = 0;
     if(blackAlphaInt > minAlpha) {
-        currentSprites.black.shapeColor.setAlpha(blackAlphaInt - 50);
+        currentSprites.black.shapeColor.setAlpha(blackAlphaInt - 30);
     }else {
         sceneChange("TITLE_NOSET");
         return;

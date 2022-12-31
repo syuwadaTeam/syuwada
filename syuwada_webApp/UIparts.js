@@ -86,6 +86,8 @@ function setOtehonn(char) {
     console.log("set otehonn");
 
     const otehonn = createSprite(width / 2 - 153, height / 2 - 120);
+    otehonn.originX = width / 2 - 153;
+    otehonn.char = char;
     otehonn.charType = getCharType(char);
     otehonn.charNum = getCharNum(char, otehonn.charType);
     if(otehonn.charNum != -1)
@@ -95,22 +97,22 @@ function setOtehonn(char) {
             case 0:
                 break;
             case 1:
-                if(this.position.x > width / 2 - 120)
-                    this.position.x = width / 2 - 180;
+                if(this.position.x < this.originX - 20)
+                    this.position.x = this.originX + 20;
                 else
-                    this.position.x += 2;
+                    this.position.x -= 1.3;
                 break;
             case 2:
-                if(this.position.y < height / 2 - 140)
+                if(this.position.y < height / 2 - 130)
                     this.position.y = height / 2 - 100;
                 else
-                    this.position.y -= 2;
+                    this.position.y -= 1.0;
                 break;
             case 3:
-                if(this.width < 20)
-                    this.width = 50;
+                if(this.scale < 0.8)
+                    this.scale = 1.0;
                 else
-                    this.width -= 2;
+                    this.scale -= 0.005;
                 break;
             case 4:
                 break;
@@ -205,8 +207,75 @@ function setBlack(alpha) {
 function setRuleSheet() {
     console.log("set rule sheet");
 
-    const rule = createSprite(width / 2, height / 2 - 20, width * 0.7, height * 0.8);
-    //rule.addImage();
-    rule.shapeColor = color(255);
-    return rule;
+    const ruleSheet = createSprite(width / 2, height / 2 - 20, width * 0.7, height * 0.8);
+    //ruleSheet.addImage();
+    ruleSheet.shapeColor = color(255);
+    return ruleSheet;
+}
+
+function setAllMojiSheet() {
+    console.log("set rule sheet");
+
+    const allMojiSheet = createSprite(width / 2, height / 2 - 20, width * 0.8, height * 0.8);
+    //allMojiSheet.addImage();
+    allMojiSheet.shapeColor = color(255);
+
+    return allMojiSheet;
+}
+
+function setOtehonnCharset(char) {    // 例:　charが「は」の場合、 「は」「ば」「ぱ」のお手本を生成。
+    console.log("set otehonn charset");
+
+    const otehonnSetChars = [];
+    const dakuonns = json.strData.dakuonns;
+    const hanndakuonns = json.strData.hanndakuonns;
+    const youonns = json.strData.youonns;
+    let targetChar;
+
+    targetChar = char;   // 静音 （または "ー"）
+    otehonnSetChars.push(targetChar);
+
+    targetChar = String.fromCodePoint(char.codePointAt(0) + 1);   // 濁音は文字コード+1 「は」→「ば」
+    if(dakuonns.indexOf(targetChar) != -1) otehonnSetChars.push(targetChar);
+
+    targetChar = String.fromCodePoint(char.codePointAt(0) + 2);   // 半濁音は文字コード+2　「は」→「ぱ」
+    if(hanndakuonns.indexOf(targetChar) != -1) otehonnSetChars.push(targetChar);
+
+    targetChar = String.fromCodePoint(char.codePointAt(0) - 1);   // 拗音は文字コード-1 「や」→「ゃ」
+    if(youonns.indexOf(targetChar) != -1) otehonnSetChars.push(targetChar);
+
+    console.info("setChars = " + otehonnSetChars);
+
+    const otehonnCharSets = [];
+    otehonnSetChars.forEach((char, index) => {
+        const tehonnWaku = setTehonnWaku();
+        const otehonn = setOtehonn(char);
+        const originX = (width - ((otehonnSetChars.length * (150 + 20)) - 20) + 150) / 2; // 原点x = w1/2 - w2/2 + w3 / 2
+        otehonn.position.x = tehonnWaku.position.x = otehonn.originX =  originX + index * (150 + 20);
+        otehonn.position.y = tehonnWaku.position.y = 150;
+        otehonnCharSets.push(otehonn);
+        otehonnCharSets.push(tehonnWaku);
+    });
+
+    otehonnCharSets.remove = function() {
+        this.forEach((charset) => {
+            charset.remove();
+        });
+    }
+
+    otehonnCharSets.move = function() {
+        this.forEach((otehonn, index) => {
+            // sp.otehonnCharsets[] は 偶数のindexにotehonnが格納されているため仕分ける
+            if(index % 2 == 0) otehonn.move();
+        });
+    }
+
+    return otehonnCharSets;
+}
+
+function setSelecter() {
+    console.log("set selecter");
+
+    const selecter = createSprite(width / 2, height / 2);
+    selecter.addImage(img.selecter);
 }

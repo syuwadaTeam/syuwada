@@ -219,13 +219,13 @@ function getCharType(char){
 }
 
 function getCharNum(char, charType){
-    const allMoji = json.strData.seionns;
+    const seionns = json.strData.seionns;
     // !!!! 長音のデータを取ってなかったので、長音と「ひ」が似ているので代用する（雑対応）。「ー」→「ひ」
-    if(char == "ー") return allMoji.indexOf("ひ");
+    if(char == "ー") return seionns.indexOf("ひ");
     switch (charType) {
-        case 1: return allMoji.indexOf(String.fromCodePoint(char.codePointAt(0) - 1));   // 濁音は文字コード-1 「ば」→「は」
-        case 2: return allMoji.indexOf(String.fromCodePoint(char.codePointAt(0) - 2));   // 半濁音は文字コード-2　「ぱ」→「は」
-        case 3: return allMoji.indexOf(String.fromCodePoint(char.codePointAt(0) + 1));   // 拗音は文字コード+1 「ゃ」→「や」
-        default: return allMoji.indexOf(char);   // 静音はそのまま
+        case 1: return seionns.indexOf(String.fromCodePoint(char.codePointAt(0) - 1));   // 濁音は文字コード-1 「ば」→「は」
+        case 2: return seionns.indexOf(String.fromCodePoint(char.codePointAt(0) - 2));   // 半濁音は文字コード-2　「ぱ」→「は」
+        case 3: return seionns.indexOf(String.fromCodePoint(char.codePointAt(0) + 1));   // 拗音は文字コード+1 「ゃ」→「や」
+        default: return seionns.indexOf(char);   // 静音はそのまま
     }
 }

@@ -26,6 +26,7 @@ function preload() {
     img.hand_front = loadImage(`${assetsUrlStr}/hand_1.png`);
     img.hand_behind = loadImage(`${assetsUrlStr}/hand_2.png`);
     img.logo = loadImage(`${assetsUrlStr}/logo.png`);
+    img.selecter = loadImage(`${assetsUrlStr}/selecter.png`);
 
     img.ticket = [  loadImage(`${assetsUrlStr}/mode_1.png`), 
                     loadImage(`${assetsUrlStr}/mode_2.png`),  
@@ -52,6 +53,7 @@ function setup() {
     let canvas = createCanvas(700, 500);
     canvas.parent('p5canvas');
 
+    // 後で不必要な行を削除する。
     img.maku_left.resize(width / 2, 0);
     img.maku_right.resize(width / 2, 0);
     img.makusode.resize(width, height);
@@ -63,7 +65,6 @@ function setup() {
     }
     frameRate(40);
 
-    //while(mediapipe_results == null){};
     sceneChange("TITLE");
 
 }
