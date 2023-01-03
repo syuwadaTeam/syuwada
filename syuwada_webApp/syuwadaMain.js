@@ -27,6 +27,7 @@ function preload() {
     img.hand_behind = loadImage(`${assetsUrlStr}/hand_2.png`);
     img.logo = loadImage(`${assetsUrlStr}/logo.png`);
     img.selecter = loadImage(`${assetsUrlStr}/selecter.png`);
+    img.allMojiWaku = loadImage(`${assetsUrlStr}/allmoji_waku.png`);
 
     img.ticket = [  loadImage(`${assetsUrlStr}/mode_1.png`), 
                     loadImage(`${assetsUrlStr}/mode_2.png`),  
@@ -82,7 +83,15 @@ const gameData = {
                     currentScore : -1,
                     ningyouSpeed : -1,
                     intervalCount : -1
-                 }
+                 };
+
+const settingsData = {
+                        useHand : "RIGHT", // RIGHT or LEFT
+                        sounds_bgm : true,
+                        sounds_effect : true,
+                        cameraMode : "CAMERA" // CAMERA or BONE or NONE
+                     };
+
 function draw() {
 
     image(img.background, 0, 0, width, height);

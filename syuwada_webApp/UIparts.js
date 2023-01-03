@@ -89,30 +89,53 @@ function setOtehonn(char) {
     otehonn.originX = width / 2 - 153;
     otehonn.char = char;
     otehonn.charType = getCharType(char);
+    if(otehonn.charType == 1 || otehonn.charType == 2) otehonn.scale = 0.8;
+    otehonn.animationInterval = 15;
     otehonn.charNum = getCharNum(char, otehonn.charType);
     if(otehonn.charNum != -1)
         otehonn.addImage(img.otehonn[json.strData.seionns[otehonn.charNum]]);
     otehonn.move = function(){
+
+        const intervalMax = 15;
+
         switch (this.charType) {
             case 0:
                 break;
             case 1:
-                if(this.position.x < this.originX - 20)
-                    this.position.x = this.originX + 20;
-                else
-                    this.position.x -= 1.3;
+                if(this.position.x < this.originX - 15) {
+                    if(this.animationInterval == 0) {
+                        this.position.x = this.originX + 15;
+                        this.animationInterval = intervalMax;
+                        break;
+                    }
+                    this.animationInterval--;
+                    break;
+                }
+                this.position.x -= 1.4;
                 break;
             case 2:
-                if(this.position.y < height / 2 - 130)
-                    this.position.y = height / 2 - 100;
-                else
-                    this.position.y -= 1.0;
+                if(this.position.y < height / 2 - 120) {
+                    if(this.animationInterval == 0) {
+                        this.position.y = height / 2 - 100;
+                        this.animationInterval = intervalMax;
+                        break;
+                    }
+                    this.animationInterval--;
+                    break;
+                }
+                this.position.y -= 0.9;
                 break;
             case 3:
-                if(this.scale < 0.8)
-                    this.scale = 1.0;
-                else
-                    this.scale -= 0.005;
+                if(this.scale < 0.8) {
+                    if(this.animationInterval == 0) {
+                        this.scale = 1.0;
+                        this.animationInterval = intervalMax;
+                        break;
+                    }
+                    this.animationInterval--;
+                    break;
+                }
+                this.scale -= 0.005;
                 break;
             case 4:
                 break;
@@ -218,7 +241,7 @@ function setAllMojiSheet() {
 
     const allMojiSheet = createSprite(width / 2, height / 2 - 20, width * 0.8, height * 0.8);
     //allMojiSheet.addImage();
-    allMojiSheet.shapeColor = color(255);
+    allMojiSheet.shapeColor = color('#a9937b');
 
     return allMojiSheet;
 }
@@ -244,13 +267,12 @@ function setOtehonnCharset(char) {    // 例:　charが「は」の場合、 「
     targetChar = String.fromCodePoint(char.codePointAt(0) - 1);   // 拗音は文字コード-1 「や」→「ゃ」
     if(youonns.indexOf(targetChar) != -1) otehonnSetChars.push(targetChar);
 
-    console.info("setChars = " + otehonnSetChars);
-
     const otehonnCharSets = [];
     otehonnSetChars.forEach((char, index) => {
-        const tehonnWaku = setTehonnWaku();
+        const tehonnWaku = createSprite();
+        tehonnWaku.addImage(img.allMojiWaku);
         const otehonn = setOtehonn(char);
-        const originX = (width - ((otehonnSetChars.length * (150 + 20)) - 20) + 150) / 2; // 原点x = w1/2 - w2/2 + w3 / 2
+        const originX = (width - ((otehonnSetChars.length * (150 + 20)) - 20) + 150) / 2;
         otehonn.position.x = tehonnWaku.position.x = otehonn.originX =  originX + index * (150 + 20);
         otehonn.position.y = tehonnWaku.position.y = 150;
         otehonnCharSets.push(otehonn);

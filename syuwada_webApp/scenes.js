@@ -197,7 +197,8 @@ function InitGameData() {
     const wordListData = json.strData;
     switch (gameData.mode) {
         case 0:
-            gameData.wordList = [...wordListData.hiraganas]; // ひらがな文字列を配列に
+            //gameData.wordList = [...wordListData.hiraganas]; // ひらがな文字列を配列に
+            gameData.wordList = ["ー"];
             gameData.time = 60;
             break;
         case 1:
@@ -287,7 +288,7 @@ function allMojiScreenDraw() {
     sp.otehonnCharsets.forEach((otehonn, index) => {
         if(index % 2 == 0) {
             const posx = sp.otehonnCharsets[index + 1].position.x;
-            const posy = sp.otehonnCharsets[index + 1].position.y + 40
+            const posy = sp.otehonnCharsets[index + 1].position.y + 45;
             text(otehonn.char, posx, posy);
             if(otehonn.charType == 3) {  // 拗音なら"（小）"をつける
                 textSize(13);
@@ -297,10 +298,10 @@ function allMojiScreenDraw() {
     });
 
     const allMoji = ["あいうえお", 
-                     "かきくけこ",
+                     "かきくけこ", 
                      "さしすせそ", 
                      "たちつてと", 
-                     "なにぬねの",
+                     "なにぬねの", 
                      "はひふへほ", 
                      "まみむめも", 
                      "や_ゆ_よ", 

@@ -102,7 +102,60 @@ function isYubimojiCorrect(char) {
 
     // 特殊動的文字の処理
     else {
-        return true;
+        if(hd.status == "INIT") {
+            hd.vector.x = hd.vector.y = hd.vector.z = 0;
+            hd.center.x = hd.center.y = hd.width = null;
+            predictedArr.charOrder = [];
+            predictedArr.ratioOrder = [];
+            hd.status = "HAND_POSE";
+        }
+        switch (char) {
+                    // ここからー－！ 動的文字全部実装
+            case "ー":
+
+                if(hd.status == "HAND_POSE") {
+                    console.log("ENTER: POSE: ");
+                    updatePredictYubimojiArry(normalized_landmarksObj.landmarks); // 指文字予測を更新（非同期）
+                    // 最初に手の形が合格か判断
+                    if(isPoseCorrect(predictedArr, charNum)) {
+                        hd.indexFingerTip_y = Object();
+                        hd.vector.x = hd.vector.y = hd.vector.z = hd.indexFingerTip_y.vec = 0;
+                        hd.center.x = hd.center.y = hd.width = hd.indexFingerTip_y.pos = null;
+                        hd.status = "HAND_MOVEMENT";
+                        console.log("ENTER: GO_MOVE: " + hd.vector.x);
+                    }
+                }
+                if(hd.status == "HAND_MOVEMENT") {
+                    updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
+                    const currentPosy = normalized_landmarksObj.corner.y + normalized_landmarksObj.landmarks[8][1] * normalized_landmarksObj.width; // 現在の人差し指のy座標
+                    hd.indexFingerTip_y = getMovementData(currentPosy, hd.indexFingerTip_y);
+                    return hd.indexFingerTip_y.vec >= hd.width * 0.7;
+                }
+                break;
+
+            case "を":
+
+                if(hd.status == "HAND_POSE") {
+                    console.log("ENTER: POSE: ");
+                    updatePredictYubimojiArry(normalized_landmarksObj.landmarks); // 指文字予測を更新（非同期）
+                    // 最初に手の形が合格か判断
+                    if(isPoseCorrect(predictedArr, charNum)) {
+                        hd.vector.x = hd.vector.y = hd.vector.z = 0;
+                        hd.center.x = hd.center.y = hd.width = null;
+                        hd.status = "HAND_MOVEMENT";
+                        console.log("ENTER: GO_MOVE: " + hd.vector.x);
+                    }
+                }
+                if(hd.status == "HAND_MOVEMENT") {
+                    updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
+                    return hd.vector.z <= hd.width * -0.07;
+                }
+                break;
+
+            default:
+                if(hd.status == "HAND_MOVEMENT") return true;
+                break;
+        }
     }
 
     return false;
@@ -116,39 +169,33 @@ function updateHandMovement(normalized_landmarksObj, lastHandData) {
     const corner_y = normalized_landmarksObj.corner.y;
     const center_x = corner_x + handWidth / 2;
     const center_y = corner_y + handHeight / 2;
-    const last_center = lastHandData.center;
-    const last_width = lastHandData.width;
-    const hand_vector = lastHandData.vector;
 
+    const newDataX = getMovementData(center_x, {pos: lastHandData.center.x, vec: lastHandData.vector.x});
+    const newDataY = getMovementData(center_y, {pos: lastHandData.center.y, vec: lastHandData.vector.y});
+    const newDataZ = getMovementData(handWidth, {pos: lastHandData.width, vec: lastHandData.vector.z});
 
-    // 始めの1回のみ実行される
-    if(last_center.x == null){
-        last_center.x = center_x;
-        last_center.y = center_y;
-        lastHandData.width = handWidth; // const last_widthに再代入できない
-    }
+    lastHandData.center = {x: newDataX.pos, y: newDataY.pos};
+    lastHandData.width = newDataZ.pos;
+    lastHandData.vector = {x: newDataX.vec, y: newDataY.vec, z: newDataZ.vec};
+}
 
-    const move_x = center_x - last_center.x;
-    const move_y = center_y - last_center.y;
-    const move_z = handWidth - last_width;
-    last_center.x = center_x;
-    last_center.y = center_y;
-    lastHandData.width = handWidth; // const last_widthに再代入できない
+function getMovementData(currentPos, lastData) {
 
-    // 逆方向に動いたらベクトルを0に初期化
-    if((move_x * hand_vector.x) < 0)  hand_vector.x = 0;
-    if((move_y * hand_vector.y) < 0)  hand_vector.y = 0;
-    if((move_y * hand_vector.z) < 0)  hand_vector.z = 0;
-    hand_vector.x += move_x;
-    hand_vector.y += move_y;
-    hand_vector.z += move_z;
+    const newData = { pos: 0, vec: 0 };
+
+    const move = currentPos - (lastData.pos == null ? currentPos : lastData.pos);
+    newData.pos = currentPos;
+
+    newData.vec =  ((move * lastData.vec) > 0) * lastData.vec + move;
+
+    return newData;
 }
 
 //未加工のデータを正規化する
-function get_normalized_landmarksObj(landmarks, resultImg, gain){
+function get_normalized_landmarksObj(landmarks, resultImg, gain) {
 
     let point = new Object(),
-        len = new Object(), 
+        len = new Object(),
         offset = new Object(),
         len_whithMargin,
         normalizedPoint;
@@ -178,7 +225,6 @@ function get_normalized_landmarksObj(landmarks, resultImg, gain){
     //デバック用
     //console.table(normalizedPoint.flat());
 
-    //flatで1次元配列へ変換
     return  {
               landmarks : normalizedPoint,
               corner : offset,
