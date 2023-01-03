@@ -197,8 +197,8 @@ function InitGameData() {
     const wordListData = json.strData;
     switch (gameData.mode) {
         case 0:
-            //gameData.wordList = [...wordListData.hiraganas]; // ひらがな文字列を配列に
-            gameData.wordList = ["ー"];
+            gameData.wordList = [...wordListData.hiraganas]; // ひらがな文字列を配列に
+            //gameData.wordList = ["ー"];
             gameData.time = 60;
             break;
         case 1:
