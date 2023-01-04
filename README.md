@@ -10,16 +10,16 @@
 
 
 ### 2.機械学習をさせる
-  -  ✔ TensorFlow(python)で学習させ、TesorFlow.jsで予測。pythonはgoogl colabで実行。
-  -  ✔ tensorFlowで使えるようなcsv形式に変換するプログラムをc言語で開発した。→ dataConversion_program.c
-  -  ✔ 指文字予測プログラム試作をglitchで公開。→ https://smoggy-shared-mile.glitch.me/
+  - ✔ TensorFlow(python)で学習させ、TesorFlow.jsで予測。pythonはgoogl colabで実行。
+  - ✔ tensorFlowで使えるようなcsv形式に変換するプログラムをc言語で開発した。→ dataConversion_program.c
+  - ✔ 指文字予測プログラム試作をglitchで公開。→ https://smoggy-shared-mile.glitch.me/
 
   - ✔ 静的文字の予測
   - ✔ 動的文字の予測
-  - 特殊動的文字の予測
+  - ✔ 特殊動的文字の予測
   
 ### 3.手話打をwebアプリケーションとして開発
   - ✔ UIなどの案、作成
-  - pc対応 → glitchで試作を公開 https://slime-gem-hide.glitch.me/
-  - できればスマホ対応
+  - ✔ pc対応 → glitchで試作を公開 https://slime-gem-hide.glitch.me/
+  - △ できればスマホ対応
   - ✔ カスタムドメイン取得 https://www.syuwada.com/
