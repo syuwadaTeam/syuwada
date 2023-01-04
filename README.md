@@ -23,3 +23,4 @@
   - ✔ pc対応 → glitchで試作を公開 https://slime-gem-hide.glitch.me/
   - △ できればスマホ対応
   - ✔ カスタムドメイン取得 https://www.syuwada.com/
+  - ゲーム画面外の装飾等
