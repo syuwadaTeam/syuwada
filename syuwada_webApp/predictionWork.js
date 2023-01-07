@@ -102,6 +102,11 @@ function isYubimojiCorrect(char) {
 
     // 特殊動的文字の処理
     else {
+
+        // fingerNumは https://mediapipe.dev/images/mobile/hand_landmarks.png 参照
+        // XorY は Xなら0, Yなら1
+        const getFingerPos = (fingerNum, XorY) => normalized_landmarksObj.corner[XorY==0? "x":"y"] + normalized_landmarksObj.landmarks[fingerNum][XorY] * normalized_landmarksObj.width;
+
         if(hd.status == "INIT") {
             hd.vector.x = hd.vector.y = hd.vector.z = 0;
             hd.center.x = hd.center.y = hd.width = null;
@@ -110,7 +115,101 @@ function isYubimojiCorrect(char) {
             hd.status = "HAND_POSE";
         }
         switch (char) {
-                    // ここからー－！ 動的文字全部実装
+
+            case "の":
+
+                if(hd.status == "HAND_POSE") {
+                    console.log("ENTER: POSE: ");
+                    updatePredictYubimojiArry(normalized_landmarksObj.landmarks); // 指文字予測を更新（非同期）
+                    // 最初に手の形が合格か判断
+                    if(isPoseCorrect(predictedArr, charNum)) {
+                        hd.yubi = {
+                                    indexFingerTip_x : { vec: 0, pos: null},
+                                    indexFingerTip_y : { vec: 0, pos: null},
+                                  }
+                        hd.vector.x = hd.vector.y = hd.vector.z =  0;
+                        hd.center.x = hd.center.y = hd.width = null;
+                        hd.status = "HAND_MOVEMENT";
+                        console.log("ENTER: GO_MOVE: " + hd.vector.x);
+                    }
+                }
+                if(hd.status == "HAND_MOVEMENT") {
+                    updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
+                    hd.yubi.indexFingerTip_x = getMovementData(getFingerPos(8, 0), hd.yubi.indexFingerTip_x);
+                    hd.yubi.indexFingerTip_y = getMovementData(getFingerPos(8, 1), hd.yubi.indexFingerTip_y);
+
+                    if(hd.yubi.indexFingerTip_x.vec >= hd.width * 0.6 && hd.yubi.indexFingerTip_y.vec >= hd.width * 0.1) {
+                        delete hd.yubi;
+                        return true;
+                    }
+                }
+                break;
+
+            case "も":
+
+                if(hd.status == "HAND_POSE") {
+                    console.log("ENTER: POSE: ");
+                    updatePredictYubimojiArry(normalized_landmarksObj.landmarks); // 指文字予測を更新（非同期）
+                    // 最初に手の形が合格か判断
+                    if(isPoseCorrect(predictedArr, charNum)) {
+                        hd.yubi = {
+                                    thumbTip_x : { vec: 0, pos: null},
+                                    indexFingerTip_x : { vec: 0, pos: null},
+                                  }
+                        hd.vector.x = hd.vector.y = hd.vector.z =  0;
+                        hd.center.x = hd.center.y = hd.width = null;
+                        hd.status = "HAND_MOVEMENT";
+                        console.log("ENTER: GO_MOVE: " + hd.vector.x);
+                    }
+                }
+                if(hd.status == "HAND_MOVEMENT") {
+                    updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
+                    hd.yubi.thumbTip_x = getMovementData(getFingerPos(4, 0), hd.yubi.thumbTip_x);
+                    hd.yubi.indexFingerTip_x = getMovementData(getFingerPos(8, 0), hd.yubi.indexFingerTip_x);
+                    
+                    if(hd.yubi.thumbTip_x.vec >= hd.width * 0.15 && hd.yubi.indexFingerTip_x.vec <= hd.width * -0.15) {
+                        delete hd.yubi;
+                        return true;
+                    }
+                }
+                break;
+
+            case "り":
+
+                if(hd.status == "HAND_POSE") {
+                    console.log("ENTER: POSE: ");
+                    updatePredictYubimojiArry(normalized_landmarksObj.landmarks); // 指文字予測を更新（非同期）
+                    // 最初に手の形が合格か判断
+                    if(isPoseCorrect(predictedArr, charNum)) {
+                        hd.yubi = {
+                                    indexFingerTip_x : { vec: 0, pos: null},
+                                    indexFingerTip_y : { vec: 0, pos: null},
+                                    middleFingerTip_x : { vec: 0, pos: null},
+                                    middleFingerTip_y : { vec: 0, pos: null},
+                                  }
+                        hd.vector.x = hd.vector.y = hd.vector.z =  0;
+                        hd.center.x = hd.center.y = hd.width = null;
+                        hd.status = "HAND_MOVEMENT";
+                        console.log("ENTER: GO_MOVE: " + hd.vector.x);
+                    }
+                }
+                if(hd.status == "HAND_MOVEMENT") {
+                    updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
+                    hd.yubi.indexFingerTip_x = getMovementData(getFingerPos(8, 0), hd.yubi.indexFingerTip_x);
+                    hd.yubi.indexFingerTip_y = getMovementData(getFingerPos(8, 1), hd.yubi.indexFingerTip_y);
+                    hd.yubi.middleFingerTip_x = getMovementData(getFingerPos(12, 0), hd.yubi.middleFingerTip_x);
+                    hd.yubi.middleFingerTip_y = getMovementData(getFingerPos(12, 1), hd.yubi.middleFingerTip_y);
+
+                    const isindexFingerVecOK = hd.yubi.indexFingerTip_x.vec >= hd.width * 0.5;
+                    const ismiddleFingerVecOK = hd.yubi.middleFingerTip_x.vec >= hd.width * 0.6 && hd.yubi.middleFingerTip_y.vec >= hd.width * 0.1;
+                    const isFingerOrderOK = hd.yubi.indexFingerTip_y.pos < hd.yubi.middleFingerTip_y.pos;
+                    if(isindexFingerVecOK && ismiddleFingerVecOK && isFingerOrderOK) {
+                        delete hd.yubi;
+                        return true;
+                    }
+                }
+                break;
+
             case "ー":
 
                 if(hd.status == "HAND_POSE") {
@@ -118,18 +217,23 @@ function isYubimojiCorrect(char) {
                     updatePredictYubimojiArry(normalized_landmarksObj.landmarks); // 指文字予測を更新（非同期）
                     // 最初に手の形が合格か判断
                     if(isPoseCorrect(predictedArr, charNum)) {
-                        hd.indexFingerTip_y = Object();
-                        hd.vector.x = hd.vector.y = hd.vector.z = hd.indexFingerTip_y.vec = 0;
-                        hd.center.x = hd.center.y = hd.width = hd.indexFingerTip_y.pos = null;
+                        hd.yubi = {
+                            indexFingerTip_y : { vec: 0, pos: null},
+                          }
+                        hd.vector.x = hd.vector.y = hd.vector.z =  0;
+                        hd.center.x = hd.center.y = hd.width = null;
                         hd.status = "HAND_MOVEMENT";
                         console.log("ENTER: GO_MOVE: " + hd.vector.x);
                     }
                 }
                 if(hd.status == "HAND_MOVEMENT") {
                     updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
-                    const currentPosy = normalized_landmarksObj.corner.y + normalized_landmarksObj.landmarks[8][1] * normalized_landmarksObj.width; // 現在の人差し指のy座標
-                    hd.indexFingerTip_y = getMovementData(currentPosy, hd.indexFingerTip_y);
-                    return hd.indexFingerTip_y.vec >= hd.width * 0.7;
+                    hd.yubi.indexFingerTip_y = getMovementData(getFingerPos(8, 1), hd.yubi.indexFingerTip_y);
+
+                    if(hd.yubi.indexFingerTip_y.vec >= hd.width * 0.7) {
+                        delete hd.yubi;
+                        return true;
+                    }
                 }
                 break;
 
@@ -152,8 +256,45 @@ function isYubimojiCorrect(char) {
                 }
                 break;
 
+            case "ん":
+
+                if(hd.status == "HAND_POSE") {
+                    console.log("ENTER: POSE: ");
+                    updatePredictYubimojiArry(normalized_landmarksObj.landmarks); // 指文字予測を更新（非同期）
+                    // 最初に手の形が合格か判断
+                    if(isPoseCorrect(predictedArr, charNum)) {
+                        hd.yubi = {
+                                    indexFingerTip_x : { vec: 0, pos: null},
+                                    indexFingerTip_y : { vec: 0, pos: null},
+                                  }
+                        hd.vector.x = hd.vector.y = hd.vector.z =  0;
+                        hd.center.x = hd.center.y = hd.width = null;
+                        hd.status = "HAND_MOVEMENT_FIRST";
+                        console.log("ENTER: GO_MOVE: " + hd.vector.x);
+                    }
+                }
+                if(hd.status == "HAND_MOVEMENT_FIRST") {
+                    updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
+                    hd.yubi.indexFingerTip_x = getMovementData(getFingerPos(8, 0), hd.yubi.indexFingerTip_x);
+                    hd.yubi.indexFingerTip_y = getMovementData(getFingerPos(8, 1), hd.yubi.indexFingerTip_y);
+
+                    if(hd.yubi.indexFingerTip_x.vec <= hd.width * -0.3 && hd.yubi.indexFingerTip_y.vec >= hd.width * 0.1) {
+                        hd.status = "HAND_MOVEMENT_FIRST";
+                    }
+                }
+                if(hd.status == "HAND_MOVEMENT_SECOND") {
+                    updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
+                    hd.yubi.indexFingerTip_x = getMovementData(getFingerPos(8, 0), hd.yubi.indexFingerTip_x);
+                    hd.yubi.indexFingerTip_y = getMovementData(getFingerPos(8, 1), hd.yubi.indexFingerTip_y);
+
+                    if(hd.yubi.indexFingerTip_x.vec <= hd.width * -0.5 && hd.yubi.indexFingerTip_y.vec <= hd.width * -0.3) {
+                        delete hd.yubi;
+                        return true;
+                    }
+                }
+                break;
+
             default:
-                if(hd.status == "HAND_MOVEMENT") return true;
                 break;
         }
     }
@@ -186,7 +327,7 @@ function getMovementData(currentPos, lastData) {
     const move = currentPos - (lastData.pos == null ? currentPos : lastData.pos);
     newData.pos = currentPos;
 
-    newData.vec =  ((move * lastData.vec) > 0) * lastData.vec + move;
+    newData.vec = ((move * lastData.vec) > 0) * lastData.vec + move;
 
     return newData;
 }

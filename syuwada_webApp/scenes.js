@@ -198,7 +198,7 @@ function InitGameData() {
     switch (gameData.mode) {
         case 0:
             gameData.wordList = [...wordListData.hiraganas]; // ひらがな文字列を配列に
-            //gameData.wordList = ["ー"];
+            //gameData.wordList = ["ん"];
             gameData.time = 60;
             break;
         case 1:
@@ -558,6 +558,10 @@ function standbyForHandScreenDraw() {
         sceneChange("GAME_START");
         return;
     }
+
+    sound.titleBgm.vol -= 0.02;
+    sound.titleBgm.vol = sound.titleBgm.vol < 0 ? 0 : sound.titleBgm.vol;
+    sound.titleBgm.amp(sound.titleBgm.vol);
 }
 
 // scene: GAME_START
@@ -711,6 +715,10 @@ function gameFinishScreenDraw() {
         sceneChange("RESULT");
         return;
     }
+
+    sound.gameBgm.vol -= 0.05;
+    sound.gameBgm.vol = sound.gameBgm.vol < 0 ? 0 : sound.gameBgm.vol;
+    sound.gameBgm.amp(sound.gameBgm.vol);
 }
 
 // scene: RESULT
@@ -774,6 +782,10 @@ function result_to_standByForHand_ScreenDraw() {
         sceneChange("STANDBY_FOR_HAND");
         return;
     }
+
+    sound.titleBgm.vol -= 0.05;
+    sound.titleBgm.vol = sound.titleBgm.vol < 0 ? 0 : sound.titleBgm.vol;
+    sound.titleBgm.amp(sound.titleBgm.vol);
 }
 //
 // シーンチェンジをする関数
@@ -785,6 +797,11 @@ function sceneChange(scene) {
         case "TITLE":
             removeAllSprites();
             currentSprites = setTitleScreen();
+            sound.titleBgm.stop();
+            sound.gameBgm.stop();
+            sound.titleBgm.loop();
+            sound.titleBgm.vol = settingsData.sounds_bgm_amp;
+            sound.titleBgm.amp(sound.titleBgm.vol);
             break;
         case "TITLE_NOSET":
             currentScene = "TITLE";
@@ -830,7 +847,13 @@ function sceneChange(scene) {
         case "STANDBY_FOR_HAND":
             removeAllSprites();
             currentSprites = setStandbyForHandScreen();
+            break;
         case "GAME_START":
+            sound.titleBgm.stop();
+            sound.gameBgm.stop();
+            sound.gameBgm.loop();
+            sound.gameBgm.vol = settingsData.sounds_bgm_amp;
+            sound.gameBgm.amp(sound.gameBgm.vol);
             break;
         case "GAME":
             InitGameData();
@@ -846,6 +869,11 @@ function sceneChange(scene) {
         case "RESULT":
             removeAllSprites();
             currentSprites = setResultScreen();
+            sound.titleBgm.stop();
+            sound.gameBgm.stop();
+            sound.titleBgm.loop();
+            sound.titleBgm.vol = settingsData.sounds_bgm_amp;
+            sound.titleBgm.amp(sound.titleBgm.vol);
             break;
         case "RESULT_TO_TITLE":
             currentSprites.kannbann.velocity.y = 5;
