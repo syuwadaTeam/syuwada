@@ -79,17 +79,18 @@ function isYubimojiCorrect(char) {
             }
         }
         if(hd.status == "HAND_MOVEMENT") {
-            console.log("ENTER: MOVE: " + hd.vector.y);
+            console.log("ENTER: MOVE: " + hd.vector.x);
 
             // charTypeによって手の動きが合っているか判断する関数を定義
             const isMovementCorrect = (char_type) => {
                 console.log("width = " + hd.width);
-                if(char_type == 1) return hd.vector.x <= hd.width * -0.4;
-                if(char_type == 2) return hd.vector.y <= hd.width * -0.4;
-                if(char_type == 3) return hd.vector.z <= hd.width * -0.07;
+                if(char_type == 1) return hd.vector.x <= hd.width * -0.1;
+                if(char_type == 2) return hd.vector.y <= hd.width * -0.1;
+                if(char_type == 3) return hd.vector.z <= hd.width * -0.03;
             }
 
             updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
+            //console.log(charTy);
             if(isMovementCorrect(charType)) hd.status = "HAND_POSE_LAST";
         }
         if(hd.status == "HAND_POSE_LAST") {
@@ -252,7 +253,7 @@ function isYubimojiCorrect(char) {
                 }
                 if(hd.status == "HAND_MOVEMENT") {
                     updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
-                    return hd.vector.z <= hd.width * -0.07;
+                    return hd.vector.z <= hd.width * -0.03;
                 }
                 break;
 

@@ -198,7 +198,7 @@ function InitGameData() {
     switch (gameData.mode) {
         case 0:
             gameData.wordList = [...wordListData.hiraganas]; // ひらがな文字列を配列に
-            //gameData.wordList = ["ん"];
+            //gameData.wordList = ["ぎ"];
             gameData.time = 60;
             break;
         case 1:
@@ -529,6 +529,10 @@ function modeSelectionCompleteScreenDraw() {
 // scene: MODE_SELECTION_TO_TITLE
 // 手とチケットを下に隠すまでの描画
 function modeSelection_to_title_ScreenDraw() {
+
+    sound.titleBgm.vol -= 0.05;
+    sound.titleBgm.vol = sound.titleBgm.vol < 0 ? 0 : sound.titleBgm.vol;
+    sound.titleBgm.amp(sound.titleBgm.vol);
     // 手とチケットを下に隠す
     const target_y = height + img.ticket[0].width + img.hand_front.height / 10 + 40;
     if(currentSprites.hand_front.position.y <= target_y){
@@ -759,6 +763,10 @@ function result_to_title_ScreenDraw() {
         sceneChange("TITLE");
         return;
     }
+
+    sound.titleBgm.vol -= 0.05;
+    sound.titleBgm.vol = sound.titleBgm.vol < 0 ? 0 : sound.titleBgm.vol;
+    sound.titleBgm.amp(sound.titleBgm.vol);
 }
 
 // scene: RESULT_TO_STANDBY_FOR_HAND
@@ -783,7 +791,7 @@ function result_to_standByForHand_ScreenDraw() {
         return;
     }
 
-    sound.titleBgm.vol -= 0.05;
+    sound.titleBgm.vol -= 0.02;
     sound.titleBgm.vol = sound.titleBgm.vol < 0 ? 0 : sound.titleBgm.vol;
     sound.titleBgm.amp(sound.titleBgm.vol);
 }
