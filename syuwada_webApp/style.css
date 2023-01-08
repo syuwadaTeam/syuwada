@@ -1,6 +1,22 @@
+.sample{
+	position: relative;
+}
+.main{
+	width:700px;
+	height:500px;
+	background:#000;
+	margin: 5% auto;
+	border: 17px outset #be8f68;
+}
 
-#p5canvas {
-    position: absolute;
-    top: 10%;
-    left: 10%;
+#p5canvas{
+	position:relative;
+}
+
+.exe{
+	background:#ffffff;
+	margin:20px 100px;
+	padding:10px;
+	border: 1px solid #696969; 
+	border-radius:6px;
 }
