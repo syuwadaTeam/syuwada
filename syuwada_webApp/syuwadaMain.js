@@ -52,6 +52,8 @@ function preload() {
 
     sound.titleBgm = loadSound(`${assetsUrlStr}/sounds/bgm_title.mp3`);
     sound.gameBgm = loadSound(`${assetsUrlStr}/sounds/bgm_game.mp3`);
+    sound.correctChar = loadSound(`${assetsUrlStr}/sounds/effect_correctChar.mp3`);
+    sound.startbtn = loadSound(`${assetsUrlStr}/sounds/effect_start.mp3`);
 }
 
 function setup() {
@@ -64,7 +66,7 @@ function setup() {
     img.makusode.resize(width, height);
     img.makusita.resize(width, 0);
     img.background.resize(width, height);
-    img.btnGoTitle.resize(img.btnGoTitle.width * 0.8, 0);
+    //img.btnGoTitle.resize(img.btnGoTitle.width * 0.8, 0);
     for(const char in img.otehonn) {
         img.otehonn[char].resize(img.waku.width - 20, 0);
     }

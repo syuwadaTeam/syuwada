@@ -52,7 +52,7 @@ function setTicket(whatNumber) {
     ticket.rotation = -theta * (180 / Math.PI);
     ticket.setCollider('circle', 0, 0, img.ticket[0].height * 1.5);
     ticket.mouseActive = true;
-    ticket.debug = true;
+    //ticket.debug = true;  // 当たり判定を表示
 
     //console.log(theta * (180 / Math.PI), posx, posy);
     return ticket;

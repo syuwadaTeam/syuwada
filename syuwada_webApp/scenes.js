@@ -19,6 +19,8 @@ function setTitleScreen() {
     const btnStartClicked = () => {
         console.log('btnStart clicked');
         if(currentScene != "TITLE")  return;
+        sound.startbtn.amp(settingsData.sounds_effect_amp);
+        sound.startbtn.play();
         sceneChange("BTN_START_CLICKED");
     }
     sprites.btnStart = setButton(width / 2, 0 - (sprites.kannbann.height / 4), img.btnStart, btnStartClicked);
@@ -105,7 +107,7 @@ function setAllMojiScreen() {
     sprites.allMojiSheet.selectMojiBrightness = 0;
     sprites.allMojiSheet.selectedChar = "あ";
     sprites.otehonnCharsets = setOtehonnCharset(sprites.allMojiSheet.selectedChar);
-    sprites.slecter = setSelecter();
+    //sprites.slecter = setSelecter();
 
     return sprites;
 }
@@ -244,6 +246,8 @@ function setResultScreen() {
     const btnRetryClicked = () => {
         console.log('btnGoitle clicked');
         if(currentScene != "RESULT") return;
+        sound.startbtn.amp(settingsData.sounds_effect_amp);
+        sound.startbtn.play();
         sceneChange("RESULT_TO_STANDBY_FOR_HAND");
     }
     sprites.btnRetry = setButton(450,  0 - (sprites.kannbann.height / 4), img.btnRetry, btnRetryClicked); // TODO: imgをリトライに変える
@@ -627,6 +631,8 @@ function gameScreenDraw() {
         // 指文字が正しかったら次の文字へ
         if(isYubimojiCorrect(gd.currentChar)){
             console.log("correct - " + gd.currentChar);
+            sound.correctChar.amp(settingsData.sounds_effect_amp);
+            sound.correctChar.play();
             gd.charCount++;
             current_handData.status = "INIT";
             gd.currentChar = gd.currentWord[gd.charCount];
@@ -915,10 +921,4 @@ function removeSpriteExcept() {
             console.log(spName + " is remeved");
         }
     }
-}
-
-// イベントリスナー追加（廃止している）
-function addEventListeners() {
-    document.addEventListener('gotoTitle', gotoTitleScreen);
-    document.addEventListener('gotoGame', gotoGameScreen);
 }

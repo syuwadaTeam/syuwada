@@ -84,9 +84,9 @@ function isYubimojiCorrect(char) {
             // charTypeによって手の動きが合っているか判断する関数を定義
             const isMovementCorrect = (char_type) => {
                 console.log("width = " + hd.width);
-                if(char_type == 1) return hd.vector.x <= hd.width * -0.1;
-                if(char_type == 2) return hd.vector.y <= hd.width * -0.1;
-                if(char_type == 3) return hd.vector.z <= hd.width * -0.03;
+                if(char_type == 1) return hd.vector.x <= hd.width * -0.13;   // 変更前 -0.4
+                if(char_type == 2) return hd.vector.y <= hd.width * -0.1;   // 変更前 -0.4
+                if(char_type == 3) return hd.vector.z <= hd.width * -0.04;  // 変更前 0.05
             }
 
             updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
@@ -253,11 +253,12 @@ function isYubimojiCorrect(char) {
                 }
                 if(hd.status == "HAND_MOVEMENT") {
                     updateHandMovement(normalized_landmarksObj, hd); // 手の動きを更新
-                    return hd.vector.z <= hd.width * -0.03;
+                    return hd.vector.z <= hd.width * -0.04;
                 }
                 break;
 
             case "ん":
+                return true;
 
                 if(hd.status == "HAND_POSE") {
                     console.log("ENTER: POSE: ");
