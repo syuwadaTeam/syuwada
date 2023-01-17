@@ -258,7 +258,6 @@ function isYubimojiCorrect(char) {
                 break;
 
             case "ん":
-                return true;
 
                 if(hd.status == "HAND_POSE") {
                     console.log("ENTER: POSE: ");
@@ -280,8 +279,8 @@ function isYubimojiCorrect(char) {
                     hd.yubi.indexFingerTip_x = getMovementData(getFingerPos(8, 0), hd.yubi.indexFingerTip_x);
                     hd.yubi.indexFingerTip_y = getMovementData(getFingerPos(8, 1), hd.yubi.indexFingerTip_y);
 
-                    if(hd.yubi.indexFingerTip_x.vec <= hd.width * -0.3 && hd.yubi.indexFingerTip_y.vec >= hd.width * 0.1) {
-                        hd.status = "HAND_MOVEMENT_FIRST";
+                    if(hd.yubi.indexFingerTip_x.vec <= hd.width * -0.2 && hd.yubi.indexFingerTip_y.vec >= hd.width * 0.08) {
+                        hd.status = "HAND_MOVEMENT_SECOND";
                     }
                 }
                 if(hd.status == "HAND_MOVEMENT_SECOND") {
@@ -289,7 +288,7 @@ function isYubimojiCorrect(char) {
                     hd.yubi.indexFingerTip_x = getMovementData(getFingerPos(8, 0), hd.yubi.indexFingerTip_x);
                     hd.yubi.indexFingerTip_y = getMovementData(getFingerPos(8, 1), hd.yubi.indexFingerTip_y);
 
-                    if(hd.yubi.indexFingerTip_x.vec <= hd.width * -0.5 && hd.yubi.indexFingerTip_y.vec <= hd.width * -0.3) {
+                    if(hd.yubi.indexFingerTip_x.vec <= hd.width * -0.3 && hd.yubi.indexFingerTip_y.vec <= hd.width * -0.08) {
                         delete hd.yubi;
                         return true;
                     }
@@ -381,7 +380,7 @@ const predictedArr =  {
                         ratioOrder : []
                       }
 async function updatePredictYubimojiArry(normalized_landmarks) {
-    const model = await tf.loadLayersModel("https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/yubimojiPrediction_program/Assets/model.json");
+    const model = await tf.loadLayersModel("https://raw.githubusercontent.com/syuwadaTeam/syuwada/main/syuwada_webApp/assets/model/model_v2.json");
     const y_pred = await model.predict( tf.tensor2d(normalized_landmarks.flat(), [1, 63]) );
     //Arrayに変換用
     const values = await y_pred.data();

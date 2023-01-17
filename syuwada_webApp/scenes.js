@@ -200,7 +200,7 @@ function InitGameData() {
     switch (gameData.mode) {
         case 0:
             gameData.wordList = [...wordListData.hiraganas]; // ひらがな文字列を配列に
-            //gameData.wordList = ["ぎ"];
+            //gameData.wordList = ["ん"];
             gameData.time = 60;
             break;
         case 1:
@@ -690,15 +690,16 @@ function gameScreenDraw() {
 
     image(img.makusode, 0, 0, width, height);
     
-    textFont("Monospace");
-    textAlign(LEFT, TOP);
-    textSize(20);
-    const str =  "残り時間: " + gd.time + "\n"
-               + "ワード: " + gd.currentWord + "\n"
-               + "文字: " + gd.currentChar + "\n"
-               + "文字数: " + gd.charCount + "\n"
-               + "スコア: " + gd.currentScore;
-    text(str, 20, 100);
+    // デバッグ用
+    // textFont("Monospace");
+    // textAlign(LEFT, TOP);
+    // textSize(20);
+    // const str =  "残り時間: " + gd.time + "\n"
+    //            + "ワード: " + gd.currentWord + "\n"
+    //            + "文字: " + gd.currentChar + "\n"
+    //            + "文字数: " + gd.charCount + "\n"
+    //            + "スコア: " + gd.currentScore;
+    // text(str, 20, 100);
 
     // 残り時間が0以下なら、ゲーム終了
     if(gd.time <= 0) {

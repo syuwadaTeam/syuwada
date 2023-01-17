@@ -166,10 +166,11 @@ function draw() {
             break;
     }
 
-    textFont("Monospace");
-    textAlign(LEFT, TOP);
-    textSize(15);
-    text('Scene: ' + currentScene + '\nfps: ' + frameRate(), 30, 10);
+    // デバッグ用
+    // textFont("Monospace");
+    // textAlign(LEFT, TOP);
+    // textSize(15);
+    // text('Scene: ' + currentScene + '\nfps: ' + frameRate(), 30, 10);
     // console.log('fps: ' + frameRate());
 
 }
