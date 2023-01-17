@@ -29,6 +29,7 @@ function preload() {
     img.logo = loadImage(`${assetsUrlStr}/imgs/logo.png`);
     img.selecter = loadImage(`${assetsUrlStr}/imgs/selecter.png`);
     img.allMojiWaku = loadImage(`${assetsUrlStr}/imgs/allmoji_waku.png`);
+    img.ruleSheet = loadImage(`${assetsUrlStr}/imgs/ruleSheet.png`);
 
     img.ticket = [  loadImage(`${assetsUrlStr}/imgs/mode_1.png`), 
                     loadImage(`${assetsUrlStr}/imgs/mode_2.png`),  
@@ -93,8 +94,8 @@ const gameData = {
 
 const settingsData = {
                         useHand : "RIGHT", // RIGHT or LEFT
-                        sounds_bgm_amp : 0.5,  // 0.0 ~ 1.0
-                        sounds_effect_amp : 0.5,   // 0.0 ~ 1.0
+                        sounds_bgm_amp : 0.3,  // 0.0 ~ 1.0
+                        sounds_effect_amp : 0.3,   // 0.0 ~ 1.0
                         cameraMode : "CAMERA" // CAMERA or BONE or NONE
                      };
 

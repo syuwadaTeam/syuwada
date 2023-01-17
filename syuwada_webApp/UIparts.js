@@ -230,8 +230,8 @@ function setBlack(alpha) {
 function setRuleSheet() {
     console.log("set rule sheet");
 
-    const ruleSheet = createSprite(width / 2, height / 2 - 20, width * 0.7, height * 0.8);
-    //ruleSheet.addImage();
+    const ruleSheet = createSprite(width / 2, height / 2 - 20);
+    ruleSheet.addImage(img.ruleSheet);
     ruleSheet.shapeColor = color(255);
     return ruleSheet;
 }
