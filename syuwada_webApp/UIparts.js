@@ -89,15 +89,16 @@ function setOtehonn(char) {
     const otehonn = createSprite(width / 2 - 153, height / 2 - 120);
     otehonn.originX = width / 2 - 153;
     otehonn.originY = height / 2 - 120;
-    otehonn.scale = 0.95;
     otehonn.char = char;
     otehonn.charType = getCharType(char);
     if(otehonn.charType == 1 || otehonn.charType == 2) otehonn.scale = 0.7;
+    else if(otehonn.charType == 4) otehonn.scale = 0.8;
+    else otehonn.scale = 0.95;
     otehonn.animationInterval = 15;
     otehonn.charNum = getCharNum(char, otehonn.charType);
     if(otehonn.charNum != -1) {
-        if(otehonn.charType == 4 && char != "を")
-            otehonn.addAnimation(img.otehonn[json.strData.seionns[otehonn.charNum]]);
+        if(char == "ー")
+            otehonn.addImage(img.otehonn["ー"]);
         else
             otehonn.addImage(img.otehonn[json.strData.seionns[otehonn.charNum]]);
     }
@@ -156,10 +157,7 @@ function setOtehonn(char) {
                         break;
                     }
                     this.scale -= 0.005;
-                    break;
                 }
-                if(char == "ー") break;
-
                 break;
             default:
                 break;

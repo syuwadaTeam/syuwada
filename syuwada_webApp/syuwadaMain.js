@@ -46,15 +46,7 @@ function preload() {
     json.strData = loadJSON(`${assetsUrlStr}/strData.json`);
 
     img.otehonn = new Object();
-    for(const char of "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん") {
-        // if("のもりん".indexOf(char) != -1) {
-        //     img.otehonn[char] = [
-        //                             `${assetsUrlStr}/imgs/otehonn/${char}_1.png`, 
-        //                             `${assetsUrlStr}/imgs/otehonn/${char}_2.png`, 
-        //                             `${assetsUrlStr}/imgs/otehonn/${char}_3.png`
-        //                         ];
-        // }
-        // else
+    for(const char of "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんー") {
         img.otehonn[char] = loadImage(`${assetsUrlStr}/imgs/otehonn/${char}.png`);
     }
 
