@@ -1,14 +1,19 @@
 # syuwada 
 
-[syuwada](https://www.syuwada.com/)を今すぐプレイ!
-<br><br><br>
+### [syuwada](https://www.syuwada.com/)を今すぐプレイ!
+推奨環境
+- Chrome
+- PC + webカメラ
+
+###### ※iphone非対応 Android動作確認済み
+
+---------------------
 手話打を開発する
 
 ### 1.機械学習用のデータを作る
   - ✔ 効率よくデータ収集するためのプログラムを作成。→ glitchにてwebサイトとして公開 https://resilient-fluoridated-iodine.glitch.me/
   - ✔ CSV形式で出力。
   - ✔ その時の画像も出力
-
   - ✔ csvデータから、視覚的にわかりやすいデータ画像を作成するプログラムの作成。
 
 
