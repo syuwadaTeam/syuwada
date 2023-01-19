@@ -79,6 +79,7 @@ function setNingyou(skinNumber) {
 
     const ningyou = createSprite(0 - img.ningyou[skinNumber].width / 2, height / 4 * 3 - 10);
     ningyou.addImage(img.ningyou[skinNumber]);
+    ningyou.scale = 0.7;
     return ningyou;
 }
 
@@ -87,13 +88,19 @@ function setOtehonn(char) {
 
     const otehonn = createSprite(width / 2 - 153, height / 2 - 120);
     otehonn.originX = width / 2 - 153;
+    otehonn.originY = height / 2 - 120;
+    otehonn.scale = 0.95;
     otehonn.char = char;
     otehonn.charType = getCharType(char);
-    if(otehonn.charType == 1 || otehonn.charType == 2) otehonn.scale = 0.8;
+    if(otehonn.charType == 1 || otehonn.charType == 2) otehonn.scale = 0.7;
     otehonn.animationInterval = 15;
     otehonn.charNum = getCharNum(char, otehonn.charType);
-    if(otehonn.charNum != -1)
-        otehonn.addImage(img.otehonn[json.strData.seionns[otehonn.charNum]]);
+    if(otehonn.charNum != -1) {
+        if(otehonn.charType == 4 && char != "を")
+            otehonn.addAnimation(img.otehonn[json.strData.seionns[otehonn.charNum]]);
+        else
+            otehonn.addImage(img.otehonn[json.strData.seionns[otehonn.charNum]]);
+    }
     otehonn.move = function(){
 
         const intervalMax = 15;
@@ -114,9 +121,9 @@ function setOtehonn(char) {
                 this.position.x -= 1.4;
                 break;
             case 2:
-                if(this.position.y < height / 2 - 120) {
+                if(this.position.y < this.originY - 15) {
                     if(this.animationInterval == 0) {
-                        this.position.y = height / 2 - 100;
+                        this.position.y = this.originY + 10;
                         this.animationInterval = intervalMax;
                         break;
                     }
@@ -128,7 +135,7 @@ function setOtehonn(char) {
             case 3:
                 if(this.scale < 0.8) {
                     if(this.animationInterval == 0) {
-                        this.scale = 1.0;
+                        this.scale = 0.95;
                         this.animationInterval = intervalMax;
                         break;
                     }
@@ -138,6 +145,21 @@ function setOtehonn(char) {
                 this.scale -= 0.005;
                 break;
             case 4:
+                if(char == "を") {
+                    if(this.scale < 0.8) {
+                        if(this.animationInterval == 0) {
+                            this.scale = 0.95;
+                            this.animationInterval = intervalMax;
+                            break;
+                        }
+                        this.animationInterval--;
+                        break;
+                    }
+                    this.scale -= 0.005;
+                    break;
+                }
+                if(char == "ー") break;
+
                 break;
             default:
                 break;
@@ -274,7 +296,7 @@ function setOtehonnCharset(char) {    // 例:　charが「は」の場合、 「
         const otehonn = setOtehonn(char);
         const originX = (width - ((otehonnSetChars.length * (150 + 20)) - 20) + 150) / 2;
         otehonn.position.x = tehonnWaku.position.x = otehonn.originX =  originX + index * (150 + 20);
-        otehonn.position.y = tehonnWaku.position.y = 150;
+        otehonn.position.y = tehonnWaku.position.y = otehonn.originY = 140;
         otehonnCharSets.push(otehonn);
         otehonnCharSets.push(tehonnWaku);
     });

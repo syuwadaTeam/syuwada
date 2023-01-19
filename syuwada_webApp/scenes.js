@@ -200,7 +200,7 @@ function InitGameData() {
     switch (gameData.mode) {
         case 0:
             gameData.wordList = [...wordListData.hiraganas]; // ひらがな文字列を配列に
-            //gameData.wordList = ["ん"];
+            //gameData.wordList = [..."ぴぽ"];
             gameData.time = 60;
             break;
         case 1:

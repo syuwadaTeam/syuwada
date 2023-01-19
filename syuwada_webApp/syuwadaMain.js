@@ -38,14 +38,23 @@ function preload() {
     img.ticketSelectStandby = loadImage(`${assetsUrlStr}/imgs/mode_standby.png`);
     img.ticket_exp = loadImage(`${assetsUrlStr}/imgs/mode_exp.png`);
 
-    img.ningyou = [ loadImage(`${assetsUrlStr}/imgs/ningyou_1.png`),
-                    loadImage(`${assetsUrlStr}/imgs/ningyou_2.png`), 
-                    loadImage(`${assetsUrlStr}/imgs/ningyou_3.png`) ];
+    img.ningyou = [];
+    for(let count = 1; count <= 8; count++) {   // ningyou_1 ~ 8 まで取得
+        img.ningyou.push(loadImage(`${assetsUrlStr}/imgs/ningyou_${count}.png`));
+    }
 
     json.strData = loadJSON(`${assetsUrlStr}/strData.json`);
 
     img.otehonn = new Object();
     for(const char of "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん") {
+        // if("のもりん".indexOf(char) != -1) {
+        //     img.otehonn[char] = [
+        //                             `${assetsUrlStr}/imgs/otehonn/${char}_1.png`, 
+        //                             `${assetsUrlStr}/imgs/otehonn/${char}_2.png`, 
+        //                             `${assetsUrlStr}/imgs/otehonn/${char}_3.png`
+        //                         ];
+        // }
+        // else
         img.otehonn[char] = loadImage(`${assetsUrlStr}/imgs/otehonn/${char}.png`);
     }
 
@@ -61,20 +70,9 @@ function setup() {
     let canvas = createCanvas(700, 500);
     canvas.parent('p5canvas');
 
-    // 後で不必要な行を削除する。
-    img.maku_left.resize(width / 2, 0);
-    img.maku_right.resize(width / 2, 0);
-    img.makusode.resize(width, height);
-    img.makusita.resize(width, 0);
-    img.background.resize(width, height);
-    //img.btnGoTitle.resize(img.btnGoTitle.width * 0.8, 0);
-    for(const char in img.otehonn) {
-        img.otehonn[char].resize(img.waku.width - 20, 0);
-    }
     frameRate(40);
 
     sceneChange("TITLE");
-
 }
 
 let currentSprites = new Object();
