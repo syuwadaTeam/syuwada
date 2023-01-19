@@ -1,4 +1,7 @@
-# syuwada
+# syuwada 
+
+[syuwada](https://www.syuwada.com/)を今すぐプレイ!
+<br><br><br>
 手話打を開発する
 
 ### 1.機械学習用のデータを作る
